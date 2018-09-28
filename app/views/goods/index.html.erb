@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Goods</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Name</th>
+      <th>Nickname</th>
+      <th>Seller</th>
+      <th>Property type</th>
+      <th>Location</th>
+      <th>Tel</th>
+      <th>Email</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @goods.each do |good| %>
+      <tr>
+        <td><%= good.title %></td>
+        <td><%= good.name %></td>
+        <td><%= good.nickname %></td>
+        <td><%= good.seller %></td>
+        <td><%= good.property_type %></td>
+        <td><%= good.location %></td>
+        <td><%= good.tel %></td>
+        <td><%= good.email %></td>
+        <td><%= good.user_id %></td>
+        <td><%= link_to 'Show', good %></td>
+        <td><%= link_to 'Edit', edit_good_path(good) %></td>
+        <td><%= link_to 'Destroy', good, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Good', new_good_path %>
