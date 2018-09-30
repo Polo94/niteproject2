@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :goods, dependent: :destroy
   has_many :opinions
-  has_many :opinion_additions, through: :opinions, source :good
+  has_many :opinion_additions, through: :opinions, source: :good
 
   def subscribed?
     stripe_subscription_id?

@@ -1,0 +1,24 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        <i class="fa fa-book"></i> <%= current_user.name %>'s Opinion
+      </h1>
+      <h2 class="subtitle">
+        Download or manage your goods below
+      </h2>
+    </div>
+  </div>
+</section>
+
+  <% if @opinion_goods.exists? %>
+    <div class="book-grid">
+      <%= render @opinion_goods, book: @good %>
+    </div>
+  <% else %>
+  <article class="message">
+    <div class="message-body">You haven't added any goods to your opinions yet. <%= link_to 'Add some', root_path %>.</div>
+  </article>
+  <% end %>
+
+</section>

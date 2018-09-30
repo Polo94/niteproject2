@@ -1,5 +1,7 @@
 class GoodsController < ApplicationController
-  before_action :set_good, only: [:show, :edit, :update, :destroy]
+  before_action :set_good, only: [:show, :edit, :update, :destroy, :opinion]
+  before_action :authenticate_user!, except: [:index, :show]
+
 
   # GET /goods
   # GET /goods.json
@@ -14,7 +16,7 @@ class GoodsController < ApplicationController
 
   # GET /goods/new
   def new
-    @good = Good.new
+    @good = current_user.goods.build
   end
 
   # GET /goods/1/edit
@@ -24,7 +26,7 @@ class GoodsController < ApplicationController
   # POST /goods
   # POST /goods.json
   def create
-    @good = Good.new(good_params)
+    @good = current_user.goods.build(good_params)
 
     respond_to do |format|
       if @good.save
@@ -60,6 +62,26 @@ class GoodsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  # Add and remove goods to opinion
+  # for current_user
+  def opinion
+    type = params[:type]
+
+    if type == "add"
+      current_user.opinion_additions << @good
+      redirect_to opinion_index_path, notice: "#{@good.title} was added to your opinions"
+
+    elsif type == "remove"
+      current_user.opinion_additions.delete(@good)
+      redirect_to root_path, notice: "#{@good.title} was removed from your opinions"
+    else
+      # Type missing, nothing happens
+      redirect_to good_path(@good), notice: "Looks like nothing happened. Try once more!"
+    end
+
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.
