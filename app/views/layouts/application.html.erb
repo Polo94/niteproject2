@@ -42,8 +42,8 @@
         <div class="navbar-start">
           <% if subscribed? %>
             <div class="navbar-item">
-              <%= link_to library_index_path, class: 'navbar-item button is-dark' do %>
-                <i class="fa fa-book"></i> &nbsp;&nbsp; My Library
+              <%= link_to opinion_index_path, class: 'navbar-item button is-dark' do %>
+                <i class="fa fa-good"></i> &nbsp;&nbsp; My Opinions
               <% end %>
             </div>
           <% end %>
@@ -51,7 +51,7 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <% if admin? %>
-              <%= link_to 'New Book', new_book_path, class:'button is-dark' %>
+              <%= link_to 'New Good', new_good_path, class:'button is-dark' %>
             <% end %>
             <div class="field is-grouped">
             <% if user_signed_in? %>
