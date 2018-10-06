@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_28_050908) do
+ActiveRecord::Schema.define(version: 2018_10_05_223933) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2018_09_28_050908) do
     t.string "title"
     t.string "name"
     t.string "nickname"
-    t.boolean "seller"
+    t.boolean "is_seller"
     t.string "property_type"
     t.string "location"
     t.string "tel"
@@ -45,6 +45,10 @@ ActiveRecord::Schema.define(version: 2018_09_28_050908) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "seller_id"
+    t.integer "buyer_id"
+    t.index ["buyer_id"], name: "index_goods_on_buyer_id"
+    t.index ["seller_id"], name: "index_goods_on_seller_id"
   end
 
   create_table "opinions", force: :cascade do |t|
@@ -52,6 +56,22 @@ ActiveRecord::Schema.define(version: 2018_09_28_050908) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.float "stars"
+    t.float "service_quality"
+    t.float "interlocutor_skills"
+    t.float "monitoring_care"
+    t.boolean "company_recommendation"
+    t.text "testimony", limit: 250
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "seller_id"
+    t.integer "buyer_id"
+    t.index ["buyer_id"], name: "index_reviews_on_buyer_id"
+    t.index ["seller_id"], name: "index_reviews_on_seller_id"
   end
 
   create_table "users", force: :cascade do |t|

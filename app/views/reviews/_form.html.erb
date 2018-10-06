@@ -1,0 +1,22 @@
+<% if @object %>
+  <%= simple_form_for @object, url: good_review_path(@good, @object), method: :put, authenticity_token: true do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.input :stars %>
+      <%= f.input :service_quality %>
+      <%= f.input :interlocutor_skills %>
+      <%= f.input :monitoring_care %>
+      <%= f.input :company_recommendation %>
+      <%= f.input :testimony %>
+      <%= f.input :token, as: :hidden %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+<% else %>
+  <p>You are not authorized to perform this action</p>
+<% end %>

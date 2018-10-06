@@ -1,0 +1,9 @@
+<% if @seller.token != "USED" %>
+  <%= link_to "seller_form" ,good_review_path(@good, @good.seller, token: @good.seller.token)  %>
+  <%= mail_to("", "send mail to seller", {subject: 'Invitation to complete form', body: "http://localhost:3000/goods/#{@good.id}/reviews/#{@seller.id}?token=#{@seller.token}"}) %>
+<% elsif @buyer.token != "USED" %>
+  <%= link_to "buyer_form" ,good_review_path(@good, @good.buyer, token: @good.buyer.token)  %>
+  <%= mail_to("", "send mail to buyer", { subject: 'Invitation to complete form', body: "http://localhost:3000/goods/#{@good.id}/reviews/#{@buyer.id}?token=#{@buyer.token}"} ) %>
+<% else %>
+  <p>there's no action to do here anymore</p>
+<% end %>

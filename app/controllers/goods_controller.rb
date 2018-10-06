@@ -30,7 +30,10 @@ class GoodsController < ApplicationController
 
     respond_to do |format|
       if @good.save
-        format.html { redirect_to @good, notice: 'Good was successfully created.' }
+        @good.seller = Review.create(token: (rand(500..5000) * @good.id + @good.title.length))
+        @good.buyer = Review.create(token: (rand(500..5000) * @good.id + @good.name.length))
+        @good.save
+        format.html { redirect_to good_reviews_path(@good), notice: 'Good was successfully created.' }
         format.json { render :show, status: :created, location: @good }
       else
         format.html { render :new }
