@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_05_223933) do
+ActiveRecord::Schema.define(version: 2018_10_06_143449) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2018_10_05_223933) do
     t.datetime "updated_at", null: false
     t.integer "seller_id"
     t.integer "buyer_id"
+    t.boolean "is_visible"
     t.index ["buyer_id"], name: "index_reviews_on_buyer_id"
     t.index ["seller_id"], name: "index_reviews_on_seller_id"
   end

@@ -1,0 +1,55 @@
+<%= "Vente #{@good.property_type} à #{@good.location}" %>
+<br>
+<%= @good.name %>
+<br>
+<!-- ajouter ici le nom de l'agence en faisant @good.user.nom_de_ta_variable_avec_le_nom_d_agence -->
+<% if @buyer %>
+  <%= "buyer review" %>
+  <br>
+  <%= @buyer.testimony %>
+  <br>
+<% end %>
+<% if @seller %>
+  <%= "seller review" %>
+  <br>
+  <%= @seller.testimony %>
+  <br>
+<% end %>
+<%= "total stars ==" %>
+<% if @buyer && @seller %>
+  <% total_stars = @buyer.stars + @seller.stars / 2.0 %>
+<% else %>
+  <% total_stars = @buyer ? @buyer.stars : @seller.stars %>
+<% end %>
+<%= total_stars %>
+<% diff = 10 - Integer(total_stars) %>
+<% (10 - diff).times do %><i class="fas fa-star"></i><% end %>
+<% if total_stars % 2 %><i class="fas fa-star-half-alt"></i><% end %>
+<% (total_stars % 2 > 0 ? diff - 1 : diff).times do %><i class="far fa-star"></i><% end %>
+<br>
+<%= "service_quality ==" %>
+<% if @buyer && @seller %>
+  <% service_quality = @buyer.service_quality + @seller.service_quality / 2.0 %>
+<% else %>
+  <% service_quality = @buyer ? @buyer.service_quality : @seller.service_quality %>
+<% end %>
+<%= service_quality %>
+<% diff = 10 - Integer(service_quality) %>
+<% (10 - diff).times do %><i class="fas fa-star"></i><% end %>
+<% if service_quality % 2 > 0 %><i class="fas fa-star-half-alt"></i><% end %>
+<% (service_quality % 2 > 0 ? diff - 1 : diff).times do %><i class="far fa-star"></i><% end %>
+<br>
+<%= "interlocutor_skills ==" %>
+<% if @buyer && @seller %>
+  <%= @buyer.interlocutor_skills + @seller.interlocutor_skills / 2.0 %>
+<% else %>
+  <%= @buyer ? @buyer.interlocutor_skills : @seller.interlocutor_skills %>
+<% end %>
+<br>
+<%= "monitoring_care ==" %>
+<% if @buyer && @seller %>
+  <%= @buyer.monitoring_care + @seller.monitoring_care / 2.0 %>
+<% else %>
+  <%= @buyer ? @buyer.monitoring_care : @seller.monitoring_care %>
+<% end %>
+<br>

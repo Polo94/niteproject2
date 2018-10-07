@@ -4,14 +4,14 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :name %>
-    <%= f.input :nickname %>
-    <%= f.input :is_seller %>
-    <%= f.input :property_type %>
-    <%= f.input :location %>
-    <%= f.input :tel %>
-    <%= f.input :email %>
+    <%= f.input :title, required: true %>
+    <%= f.input :name, required: true %>
+    <%= f.input :nickname, required: true %>
+    <%= f.input :is_seller, required: true %>
+    <%= f.input :property_type, required: true %>
+    <%= f.input :location, required: true %>
+    <%= f.input :tel, required: true %>
+    <%= f.input :email, required: true %>
   </div>
 
   <div class="form-actions">

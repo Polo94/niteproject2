@@ -5,12 +5,13 @@ Rails.application.routes.draw do
     member do
       put "add", to: "goods#opinion"
       put "remove", to: "goods#opinion"
+      get "details", to: 'goods#details'
    end
   end
   resources :opinion, only: [:index]
   resources :pricing, only: [:index]
   devise_for :users, controllers: { registrations: "registrations" }
-  root to: 'goods#index'
+  root to: 'goods#home'
   resources :subscriptions
   resources :goods, only: [] do
     resources :reviews, only: [:index, :update, :show]

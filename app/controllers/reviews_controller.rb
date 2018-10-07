@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   before_action :set_object_with_token, only: [:show]
   before_action :set_object, only: [:update]
   before_action :set_objects, only: [:index]
+  before_action :authenticate_user!, except: [:show, :update]
 
   def index
   end
@@ -15,12 +16,16 @@ class ReviewsController < ApplicationController
     if @object.token != "USED"
       @object.update(review_params)
       @object.token = "USED"
-      respond_to do |format|
-        if @object.save
-          format.html { redirect_to good_reviews_path(@good), notice: 'Review was successfully created.'}
-        else
-          format.html { render :new }
-        end
+      @object.is_visible = true
+    elsif @object.token == "USED" && current_user
+      visible = @object.is_visible ? false : true
+      @object.update({is_visible: visible})
+    end
+    respond_to do |format|
+      if @object.save
+        format.html { redirect_to good_reviews_path(@good), notice: 'Review was successfully updated.'}
+      else
+        format.html { render :new }
       end
     end
   end

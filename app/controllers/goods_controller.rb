@@ -1,12 +1,14 @@
 class GoodsController < ApplicationController
-  before_action :set_good, only: [:show, :edit, :update, :destroy, :opinion]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_good, only: [:show, :edit, :update, :destroy, :opinion, :details]
+  before_action :set_goods, only: [:home]
+  before_action :set_variables, only: [:details]
+  before_action :authenticate_user!, except: [:home, :details]
 
 
   # GET /goods
   # GET /goods.json
   def index
-    @goods = Good.all
+    @goods = Good.where(user_id: current_user.id)
   end
 
   # GET /goods/1
@@ -23,6 +25,12 @@ class GoodsController < ApplicationController
   def edit
   end
 
+  def home
+  end
+
+  def details
+  end
+
   # POST /goods
   # POST /goods.json
   def create
@@ -30,8 +38,8 @@ class GoodsController < ApplicationController
 
     respond_to do |format|
       if @good.save
-        @good.seller = Review.create(token: (rand(500..5000) * @good.id + @good.title.length))
-        @good.buyer = Review.create(token: (rand(500..5000) * @good.id + @good.name.length))
+        @good.seller = Review.create({token: (rand(500..5000) * @good.id + @good.title.length), is_visible: false})
+        @good.buyer = Review.create({token: (rand(500..5000) * @good.id + @good.name.length), is_visible: false})
         @good.save
         format.html { redirect_to good_reviews_path(@good), notice: 'Good was successfully created.' }
         format.json { render :show, status: :created, location: @good }
@@ -92,8 +100,17 @@ end
       @good = Good.find(params[:id])
     end
 
+    def set_goods
+      @goods = Good.joins("LEFT OUTER JOIN reviews ON (reviews.seller_id = goods.id OR reviews.buyer_id = goods.id)").where("reviews.token = 'USED' AND reviews.is_visible = 1").uniq
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def good_params
       params.require(:good).permit(:title, :name, :nickname, :seller, :property_type, :location, :tel, :email, :user_id)
+    end
+
+    def set_variables
+      @buyer = @good.buyer && @good.buyer.token == 'USED' && @good.buyer.is_visible ? @good.buyer : nil
+      @seller = @good.seller && @good.seller.token == 'USED' && @good.seller.is_visible ? @good.seller : nil
     end
 end

@@ -1,0 +1,17 @@
+<% @goods.each do |good| %>
+  <%= "Vente #{good.property_type} à #{good.location}" %>
+  <br>
+  <%= good.name %>
+  <br>
+  <!-- ajouter ici le nom de l'agence en faisant good.user.nom_de_ta_variable_avec_le_nom_d_agence -->
+  <% object = [] %>
+  <% object << good.seller if good.seller && good.seller.is_visible && good.seller.token == 'USED' %>
+  <% object << good.buyer if good.buyer && good.buyer.is_visible && good.buyer.token == 'USED' %>
+  <% review = object.sort {|a, b| a[:stars] <=> b[:stars]}.last %>
+  <% sum = 0.0 %>
+  <% object.each { |obj| sum += obj.stars } %>
+  <%= sum / object.size %>
+  <br>
+  <%= review.testimony %>
+  <%= link_to details_good_path(good) do %>detail<% end %>
+<% end %>
