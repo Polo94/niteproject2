@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container">
-  <div class="row">
+<div class="container is-mobile">
+  <div class="row is-mobile">
     <div class="col-md-10 md-offset-1">
-      <h1>Goods</h1>
+      <em> <h1>Goods</h1> </em>
 
       <table>
         <thead>
@@ -23,6 +23,7 @@
 
         <tbody>
           <% @goods.each do |good| %>
+
             <tr>
               <td><%= good.title %></td>
               <td><%= good.name %></td>
@@ -33,8 +34,8 @@
               <td><%= good.tel %></td>
               <td><%= good.email %></td>
               <td><%= good.user_id %></td>
-              <td><%= link_to 'Show', good %></td>
-              <td><%= link_to 'Show linked reviews', good_reviews_path(good) %></td>
+              <td><%= link_to 'Show', good, class: "button is-small is-active" %></td>
+              <td><%= link_to 'Hide', good_reviews_path(good), class: "button is-small is-active" %></td>
             </tr>
           <% end %>
         </tbody>
@@ -44,4 +45,4 @@
 </div>
       <br>
 
-      <%= link_to 'New Good', new_good_path %>
+      <%= link_to 'New Good', new_good_path, class: "button is-info" %>

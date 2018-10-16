@@ -1,4 +1,7 @@
 <% @goods.each do |good| %>
+
+
+
   <%= "Vente #{good.property_type} à #{good.location}" %>
   <br>
   <%= good.name %>
@@ -12,6 +15,6 @@
   <% object.each { |obj| sum += obj.stars } %>
   <%= sum / object.size %>
   <br>
-  <%= review.testimony %>
-  <%= link_to details_good_path(good) do %>detail<% end %>
+  <%= review.testimony %> <br>
+  <%= link_to details_good_path(good), class:"button is-info is-small" do %>detail<% end %>
 <% end %>

@@ -8,7 +8,7 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.boolean :company_recommendation
       t.text :testimony, limit: 250
       t.string :token
-      
+
 
       t.timestamps
     end

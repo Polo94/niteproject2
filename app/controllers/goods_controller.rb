@@ -106,7 +106,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def good_params
-      params.require(:good).permit(:title, :name, :nickname, :seller, :property_type, :location, :tel, :email, :user_id)
+      params.require(:good).permit(:thumbnail, :title, :name, :nickname, :seller, :property_type, :location, :tel, :email, :user_id)
     end
 
     def set_variables

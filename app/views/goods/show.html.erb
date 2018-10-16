@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<div class="column is-4">
+      <%= image_tag @good.thumbnail.variant(resize: "320x495") %>
+</div>
 <p>
   <strong>Title:</strong>
   <%= @good.title %>
@@ -45,5 +48,5 @@
   <%= @good.user_id %>
 </p>
 
-<%= link_to 'Edit', edit_good_path(@good) %> |
-<%= link_to 'Back', goods_path %>
+<%= link_to 'Edit', edit_good_path(@good), class: "button is-link" %>
+<%= link_to 'Back', goods_path, class: "button is-info" %>
