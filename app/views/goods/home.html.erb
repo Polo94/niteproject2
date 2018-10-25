@@ -1,10 +1,17 @@
+
+<br>
+
 <% @goods.each do |good| %>
 
-
-
-  <%= "Vente #{good.property_type} à #{good.location}" %>
+  <%= image_tag(good.thumbnail.variant(resize: "320x495")) %>
   <br>
-  <%= good.name %>
+  <%= "Vente #{good.property_type} " %>
+  <br>
+  <%= "Le #{good.created_at.strftime("%-d/%-m/%-y")} à #{good.location.capitalize}" %>
+  <br>
+  <%= good.user.name.capitalize %>
+  <br>
+  <%= good.nickname.capitalize %> <%= "#{good.name.capitalize[0]}." %>
   <br>
   <!-- ajouter ici le nom de l'agence en faisant good.user.nom_de_ta_variable_avec_le_nom_d_agence -->
   <% object = [] %>
@@ -14,7 +21,17 @@
   <% sum = 0.0 %>
   <% object.each { |obj| sum += obj.stars } %>
   <%= sum / object.size %>
+  <% diff = 5 - Integer(sum / object.size) %>
+  <% (5 - diff).times do %><i class="fas fa-star"></i><% end %>
+
+  <% sum / object.size.times do %><i class="fas fa-star"></i><% end %>
+  <% if sum / object.size % 2 %><i class="fas fa-star-half-alt"></i><% end %>
+  <% (sum / object.size % 2 > 0 ? diff - 1 : diff).times do %><i class="far fa-star"></i><% end %>
+
   <br>
+
   <%= review.testimony %> <br>
-  <%= link_to details_good_path(good), class:"button is-info is-small" do %>detail<% end %>
+  <span class="row">  <%= link_to details_good_path(good), class:"button is-info is-small" do %>detail<% end %>
+  </span> <br> <br>
+
 <% end %>

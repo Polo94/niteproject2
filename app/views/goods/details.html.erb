@@ -1,4 +1,9 @@
-<%= "Vente #{@good.property_type} à #{@good.location}" %>
+<br>
+<%= image_tag(@good.thumbnail.variant(resize: "500x700")) %>
+<br>
+<%= "Vente #{@good.property_type} " %>
+<br>
+<%= "Le #{@good.created_at.strftime("%-d/%-m/%-y")} à #{@good.location.capitalize}" %>
 <br>
 <%= @good.name %>
 <br>
@@ -22,8 +27,8 @@
   <% total_stars = @buyer ? @buyer.stars : @seller.stars %>
 <% end %>
 <%= total_stars %>
-<% diff = 10 - Integer(total_stars) %>
-<% (10 - diff).times do %><i class="fas fa-star"></i><% end %>
+<% diff = 5 - Integer(total_stars) %>
+<% (5 - diff).times do %><i class="fas fa-star"></i><% end %>
 <% if total_stars % 2 %><i class="fas fa-star-half-alt"></i><% end %>
 <% (total_stars % 2 > 0 ? diff - 1 : diff).times do %><i class="far fa-star"></i><% end %>
 <br>
@@ -34,8 +39,8 @@
   <% service_quality = @buyer ? @buyer.service_quality : @seller.service_quality %>
 <% end %>
 <%= service_quality %>
-<% diff = 10 - Integer(service_quality) %>
-<% (10 - diff).times do %><i class="fas fa-star"></i><% end %>
+<% diff = 5 - Integer(service_quality) %>
+<% ( - diff).times do %><i class="fas fa-star"></i><% end %>
 <% if service_quality % 2 > 0 %><i class="fas fa-star-half-alt"></i><% end %>
 <% (service_quality % 2 > 0 ? diff - 1 : diff).times do %><i class="far fa-star"></i><% end %>
 <br>

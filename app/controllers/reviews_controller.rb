@@ -33,6 +33,13 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(
+      :name,
+      :nickname,
+      :seller,
+      :property_type,
+      :location,
+      :tel,
+      :email,
       :stars,
       :service_quality,
       :interlocutor_skills,
