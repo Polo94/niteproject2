@@ -7,12 +7,11 @@
 
 
       <br>
-      <h1><strong>Titre du bien vendu en référence</strong></h1>
+      <h1><strong><%= "#{@good.property_type.capitalize} à #{@good.location.capitalize}" %></strong></h1>
       <br>
-      <h2><em>Nom de l'agence</em></h2>
+      <h2><em><%= @good.user.name.capitalize %></em></h2>
       <br>
-      <h3>notation commence à 5 par défaut</h3>
-      <br>
+
 
       <%#= f.input :name, required: true %>
       <%#= f.input :nickname, required: true %>
@@ -22,12 +21,12 @@
       <%#= f.input :tel, required: true %>
       <%#= f.input :email, required: true %>
 
-      <%= f.input :stars, required: true %>
-      <%= f.input :service_quality, required: true  %>
+      <%= f.input :stars, input_html: { value: '5', min: '1', max: '5', step: 'any' }, required: true %>
+      <%= f.input :service_quality, input_html: {  value: '5',min: '1', max: '5', step: 'any' }, required: true  %>
       <%#, collection: [1,2,3,4,5,6,7,8,9,10]%>
-      <% f.input :service_quality, required: true %>
-      <%= f.input :interlocutor_skills, required: true %>
-      <%= f.input :monitoring_care, required: true %>
+      <% f.input :service_quality, input_html: {  value: '5',min: '1', max: '5', step: 'any' }, required: true %>
+      <%= f.input :interlocutor_skills, input_html: {  value: '5',min: '1', max: '5', step: 'any' }, required: true %>
+      <%= f.input :monitoring_care, input_html: {  value: '5',min: '1', max: '5', step: 'any' }, required: true %>
       <%= f.input :company_recommendation %>
       <%= f.input :testimony, required: true %>
       <%= f.input :token, as: :hidden %>

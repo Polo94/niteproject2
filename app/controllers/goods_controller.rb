@@ -8,7 +8,8 @@ class GoodsController < ApplicationController
   # GET /goods
   # GET /goods.json
   def index
-    @goods = Good.where(user_id: current_user.id)
+    @goods = Good.where(user_id: current_user.id).order("created_at DESC")
+
   end
 
   # GET /goods/1
@@ -26,6 +27,7 @@ class GoodsController < ApplicationController
   end
 
   def home
+    
   end
 
   def details

@@ -1,5 +1,5 @@
 <br>
-<%= image_tag(@good.thumbnail.variant(resize: "500x700")) %>
+<%= image_tag(@good.thumbnail.variant(resize: "650x750")) %>
 <br>
 <%= "Vente #{@good.property_type} " %>
 <br>
@@ -9,54 +9,46 @@
 <br>
 <!-- ajouter ici le nom de l'agence en faisant @good.user.nom_de_ta_variable_avec_le_nom_d_agence -->
 <% if @buyer %>
-  <%= "buyer review" %>
+  <%= "Buyer review + étoiles + comments:" %>
+  <p>Acheteur</p>
   <br>
   <%= @buyer.testimony %>
+  <%= "total stars ==" %>
+  <%= render "stars", seller_stars: @buyer.stars, buyer_stars: @buyer.stars %>
+  <%= "service_quality ==" %>
+  <%= render "stars", seller_stars: @buyer.service_quality, buyer_stars: @buyer.service_quality %>
+  <br>
+  <%= "interlocutor_skills ==" %>
+  <%= render "stars", seller_stars: @buyer.interlocutor_skills, buyer_stars: @buyer.interlocutor_skills %>
+  <%= "monitoring_care ==" %>
+  <%= render "stars", seller_stars: @buyer.monitoring_care, buyer_stars: @buyer.monitoring_care %>
   <br>
 <% end %>
 <% if @seller %>
-  <%= "seller review" %>
+  <%= "Seller review + étoiles + comments:" %>
   <br>
   <%= @seller.testimony %>
+  <%= "total stars ==" %>
+  <%= render "stars", seller_stars: @seller.stars, buyer_stars: @seller.stars %>
+  <%= "service_quality ==" %>
+  <%= render "stars", seller_stars: @seller.service_quality, buyer_stars: @seller.service_quality %>
+  <br>
+  <%= "interlocutor_skills ==" %>
+  <%= render "stars", seller_stars: @seller.interlocutor_skills, buyer_stars: @seller.interlocutor_skills %>
+  <%= "monitoring_care ==" %>
+  <%= render "stars", seller_stars: @seller.monitoring_care, buyer_stars: @seller.monitoring_care %>
   <br>
 <% end %>
+<h3>Moyennes</h3>
 <%= "total stars ==" %>
-<% if @buyer && @seller %>
-  <% total_stars = @buyer.stars + @seller.stars / 2.0 %>
-<% else %>
-  <% total_stars = @buyer ? @buyer.stars : @seller.stars %>
-<% end %>
-<%= total_stars %>
-<% diff = 5 - Integer(total_stars) %>
-<% (5 - diff).times do %><i class="fas fa-star"></i><% end %>
-<% if total_stars % 2 %><i class="fas fa-star-half-alt"></i><% end %>
-<% (total_stars % 2 > 0 ? diff - 1 : diff).times do %><i class="far fa-star"></i><% end %>
-<br>
+<%= render "stars", seller_stars: (@seller ? @seller.stars : 0), buyer_stars: @buyer ? @buyer.stars : 0 %>
 <%= "service_quality ==" %>
-<% if @buyer && @seller %>
-  <% service_quality = @buyer.service_quality + @seller.service_quality / 2.0 %>
-<% else %>
-  <% service_quality = @buyer ? @buyer.service_quality : @seller.service_quality %>
-<% end %>
-<%= service_quality %>
-<% diff = 5 - Integer(service_quality) %>
-<% ( - diff).times do %><i class="fas fa-star"></i><% end %>
-<% if service_quality % 2 > 0 %><i class="fas fa-star-half-alt"></i><% end %>
-<% (service_quality % 2 > 0 ? diff - 1 : diff).times do %><i class="far fa-star"></i><% end %>
+<%= render "stars", seller_stars: @seller ? @seller.service_quality : 0, buyer_stars: @buyer ? @buyer.service_quality : 0 %>
 <br>
 <%= "interlocutor_skills ==" %>
-<% if @buyer && @seller %>
-  <%= @buyer.interlocutor_skills + @seller.interlocutor_skills / 2.0 %>
-<% else %>
-  <%= @buyer ? @buyer.interlocutor_skills : @seller.interlocutor_skills %>
-<% end %>
-<br>
+<%= render "stars", seller_stars: @seller ? @seller.interlocutor_skills : 0, buyer_stars: @buyer ? @buyer.interlocutor_skills : 0 %>
 <%= "monitoring_care ==" %>
-<% if @buyer && @seller %>
-  <%= @buyer.monitoring_care + @seller.monitoring_care / 2.0 %>
-<% else %>
-  <%= @buyer ? @buyer.monitoring_care : @seller.monitoring_care %>
-<% end %>
+<%= render "stars", seller_stars: @seller ? @seller.monitoring_care : 0, buyer_stars: @buyer ? @buyer.monitoring_care : 0 %>
 <br>
 
 <%= link_to 'Back', goods_path, class: "button is-primary" %>

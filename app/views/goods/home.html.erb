@@ -3,6 +3,7 @@
 
 <% @goods.each do |good| %>
 
+
   <%= image_tag(good.thumbnail.variant(resize: "320x495")) %>
   <br>
   <%= "Vente #{good.property_type} " %>
@@ -11,7 +12,7 @@
   <br>
   <%= good.user.name.capitalize %>
   <br>
-  <%= good.nickname.capitalize %> <%= "#{good.name.capitalize[0]}." %>
+  <%= "Vendeur : #{good.nickname.capitalize} #{good.name.capitalize[0]}" %>
   <br>
   <!-- ajouter ici le nom de l'agence en faisant good.user.nom_de_ta_variable_avec_le_nom_d_agence -->
   <% object = [] %>
@@ -30,8 +31,14 @@
 
   <br>
 
-  <%= review.testimony %> <br>
+  <%= review.testimony %>
+  <br>
+
+  <%= "Acheteur : nom de l'acheteur + étoiles + commentaire de l'acheteur " %>
+  <br>
+
   <span class="row">  <%= link_to details_good_path(good), class:"button is-info is-small" do %>detail<% end %>
   </span> <br> <br>
+
 
 <% end %>

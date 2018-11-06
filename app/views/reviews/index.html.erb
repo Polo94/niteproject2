@@ -2,6 +2,7 @@
 <br>
 <div class="columns">
   <div class="section">
+    <%= @seller.testimony %>
 <% if @seller.token != "USED" %>
   <%= link_to "seller_form" ,good_review_path(@good, @good.seller, token: @good.seller.token), class: "button is-info"  %>
   <%= mail_to("", "send mail to seller", {subject: 'BientôtVendu.Com @ Quality services - Invitation to complete satisfaction form', body: " Bonjour,
@@ -11,19 +12,20 @@
     http://localhost:3000/goods/#{@good.id}/reviews/#{@seller.id}?token=#{@seller.token}", class: "button is-outlined"}) %>
 <% elsif @seller.token == "USED" %>
   <%= link_to good_review_path(@good, @seller), method: :patch do %>
-    <p class="button is-info is-outlined">Make Seller <%= @seller.is_visible ? "invisible" : "visible" %></p>
+    <p class="button is-info is-outlined">Make S. Review <%= @seller.is_visible ? "invisible" : "visible" %></p>
   <% end %>
 <% end %>
 </div>
 <br>
 <br>
 <div class="section">
+  <%= @buyer.testimony %>
 <% if @buyer.token != "USED" %>
   <%= link_to "buyer_form" ,good_review_path(@good, @good.buyer, token: @good.buyer.token), class: "button is-info"  %>
   <%= mail_to("", "send mail to buyer", { subject: 'Invitation to complete form', body: "http://localhost:3000/goods/#{@good.id}/reviews/#{@buyer.id}?token=#{@buyer.token}", class: "button is-outlined"} ) %>
 <% elsif @buyer.token == "USED" %>
   <%= link_to good_review_path(@good, @buyer), method: :patch do %>
-    <p class="button is-info is-outlined">Make Buyer <%= @buyer.is_visible ? "invisible" : "visible" %></p>
+    <p class="button is-info is-outlined">Make B. Review <%= @buyer.is_visible ? "invisible" : "visible" %></p>
   <% end %>
 <% end %>
 </div>

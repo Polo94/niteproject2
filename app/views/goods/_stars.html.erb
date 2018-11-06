@@ -1,0 +1,11 @@
+<% total_stars = (buyer_stars + seller_stars) / 2.0 %>
+<%= total_stars %>
+<% Integer(total_stars).times do %><i class="fas fa-star"></i><% end %>
+<% after_dot = total_stars.to_s.split(".") %>
+<% half_star = (after_dot[1] && after_dot[1] != "0") ? true : false %>
+<% if half_star == true %>
+  <i class="fas fa-star-half-alt"></i>
+<% end %>
+<% empty_stars = 5 - total_stars %>
+<% (Integer(empty_stars)).times do %><i class="far fa-star"></i><% end %>
+<br>
