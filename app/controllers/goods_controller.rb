@@ -27,7 +27,6 @@ class GoodsController < ApplicationController
   end
 
   def home
-    
   end
 
   def details

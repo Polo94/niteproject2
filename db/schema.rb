@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2018_10_06_143449) do
   end
 
   create_table "goods", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.string "title"
     t.string "name"
     t.string "nickname"
@@ -43,7 +44,6 @@ ActiveRecord::Schema.define(version: 2018_10_06_143449) do
     t.string "tel"
     t.string "email"
     t.integer "user_id"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "seller_id"
     t.integer "buyer_id"
@@ -68,11 +68,7 @@ ActiveRecord::Schema.define(version: 2018_10_06_143449) do
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "seller_id"
-    t.integer "buyer_id"
     t.boolean "is_visible"
-    t.index ["buyer_id"], name: "index_reviews_on_buyer_id"
-    t.index ["seller_id"], name: "index_reviews_on_seller_id"
   end
 
   create_table "users", force: :cascade do |t|
