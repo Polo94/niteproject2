@@ -29,6 +29,7 @@ class ReviewsController < ApplicationController
       end
     end
   end
+  
   private
 
   def review_params
@@ -67,6 +68,7 @@ class ReviewsController < ApplicationController
   end
 
   def set_objects
+    print params
     @seller = @good.seller
     @buyer = @good.buyer
   end

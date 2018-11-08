@@ -102,7 +102,7 @@ end
     end
 
     def set_goods
-      @goods = Good.joins("LEFT OUTER JOIN reviews ON (reviews.seller_id = goods.id OR reviews.buyer_id = goods.id)").where("reviews.token = 'USED' AND reviews.is_visible = 1").uniq
+      @goods = Good.joins("LEFT OUTER JOIN reviews ON (goods.seller_id = goods.id OR goods.buyer_id = goods.id)").where("reviews.token = 'USED' AND reviews.is_visible = 1").uniq
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

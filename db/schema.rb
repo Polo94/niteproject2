@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 2018_10_06_143449) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.float "stars"
     t.float "service_quality"
     t.float "interlocutor_skills"
     t.float "monitoring_care"
