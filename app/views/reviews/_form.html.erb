@@ -11,17 +11,7 @@
       <br>
       <h2><em><%= @good.user.name.capitalize %></em></h2>
       <br>
-
-
-      <%#= f.input :name, required: true %>
-      <%#= f.input :nickname, required: true %>
-
-      <%#= f.input :property_type, required: true %>
-      <%#= f.input :location, required: true %>
-      <%#= f.input :tel, required: true %>
-      <%#= f.input :email, required: true %>
-
-      <%= f.input :stars, input_html: { value: '5', min: '1', max: '5', step: 'any' }, required: true %>
+      <%= f.input :stars, input_html: {  value: '5',min: '1', max: '5', step: 'any' }, required: true  %>
       <%= f.input :service_quality, input_html: {  value: '5',min: '1', max: '5', step: 'any' }, required: true  %>
       <%#, collection: [1,2,3,4,5,6,7,8,9,10]%>
       <% f.input :service_quality, input_html: {  value: '5',min: '1', max: '5', step: 'any' }, required: true %>

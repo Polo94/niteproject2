@@ -39,9 +39,9 @@ class GoodsController < ApplicationController
 
     respond_to do |format|
       if @good.save
-        @good.seller = Review.create({token: (rand(500..5000) * @good.id + @good.title.length), is_visible: false})
-        @good.buyer = Review.create({token: (rand(500..5000) * @good.id + @good.name.length), is_visible: false})
-        @good.save
+        @good.seller_id = Review.create({token: (rand(500..5000) * @good.id + @good.title.length), is_visible: false}).id
+        @good.buyer_id = Review.create({token: (rand(500..5000) * @good.id + @good.name.length), is_visible: false}).id
+        @good.save!
         format.html { redirect_to good_reviews_path(@good), notice: 'Good was successfully created.' }
         format.json { render :show, status: :created, location: @good }
       else
@@ -102,7 +102,7 @@ end
     end
 
     def set_goods
-      @goods = Good.joins("LEFT OUTER JOIN reviews ON (goods.seller_id = goods.id OR goods.buyer_id = goods.id)").where("reviews.token = 'USED' AND reviews.is_visible = 1").uniq
+      @goods = Good.joins("LEFT OUTER JOIN reviews ON (goods.seller_id = reviews.id OR goods.buyer_id =reviews.id)").where("reviews.token = 'USED' AND reviews.is_visible = 1").uniq
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -111,7 +111,9 @@ end
     end
 
     def set_variables
-      @buyer = @good.buyer && @good.buyer.token == 'USED' && @good.buyer.is_visible ? @good.buyer : nil
-      @seller = @good.seller && @good.seller.token == 'USED' && @good.seller.is_visible ? @good.seller : nil
+      buyer = @good.buyer_id ? Review.find(@good.buyer_id) : nil
+      seller = @good.seller_id ? Review.find(@good.seller_id) : nil
+      @buyer = buyer && buyer.token == 'USED' && buyer.is_visible ? buyer : nil
+      @seller = seller && seller.token == 'USED' && seller.is_visible ? seller : nil
     end
 end

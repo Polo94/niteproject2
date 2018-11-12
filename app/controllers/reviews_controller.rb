@@ -1,9 +1,9 @@
 class ReviewsController < ApplicationController
   #layout "..."
   before_action :set_good, only: [:index, :show, :update]
-  before_action :set_object_with_token, only: [:show]
   before_action :set_object, only: [:update]
-  before_action :set_objects, only: [:index]
+  before_action :set_objects, only: [:index, :show]
+  before_action :set_object_with_token, only: [:show]
   before_action :authenticate_user!, except: [:show, :update]
 
   def index
@@ -29,18 +29,11 @@ class ReviewsController < ApplicationController
       end
     end
   end
-  
+
   private
 
   def review_params
     params.require(:review).permit(
-      :name,
-      :nickname,
-      :seller,
-      :property_type,
-      :location,
-      :tel,
-      :email,
       :stars,
       :service_quality,
       :interlocutor_skills,
@@ -54,10 +47,14 @@ class ReviewsController < ApplicationController
   end
 
   def set_object_with_token
-    if params['token'] == @good.buyer.token && @good.buyer.token != "USED"
-      @object = @good.buyer
-    elsif params['token'] == @good.seller.token && @good.seller.token != "USED"
-      @object = @good.seller
+    puts("randomsentance")
+    if params['token'] == @buyer.token && @buyer.token != "USED"
+      @object = @buyer
+      puts("here")
+    elsif params['token'] == @seller.token && @seller.token != "USED"
+      @object = @seller
+      puts("there")
+    puts("ici")
     ## else
       ## retourner une erreur
     end
@@ -68,8 +65,8 @@ class ReviewsController < ApplicationController
   end
 
   def set_objects
-    print params
-    @seller = @good.seller
-    @buyer = @good.buyer
+
+    @seller = Review.find(@good.seller_id)
+    @buyer = Review.find(@good.buyer_id)
   end
 end
