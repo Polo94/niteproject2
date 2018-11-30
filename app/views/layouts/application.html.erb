@@ -16,7 +16,7 @@
 
   </head>
 
-  <body class="<%= yield (:body_class) %>">
+  <body >
     <% if flash[:notice] %>
       <div class="notification is-success global-notification">
         <p class="notice"><%= notice %></p>
@@ -64,22 +64,24 @@
         <% if user_signed_in? %>
 
           <div class="navbar-item has-dropdown is-hoverable">
-            <%= link_to 'Account', edit_user_registration_path, class: "navbar-link" %>
+            <%= link_to 'Menu', edit_user_registration_path, class: "navbar-link" %>
 
             <div class="navbar-dropdown is-right">
-              <%= link_to edit_user_registration_path, class:"navbar-item" do %>
+              <%= link_to user_path(current_user), class:"navbar-item" do %>
                 <%= current_user.name %> <% if admin? %> &nbsp; <span class="tag is-warning">ADMIN</span> <% end %>
               <% end %>
               <p class="control">
-                <%= link_to 'Goods', goods_path, class: 'navbar-item' %>
+                <%= link_to 'Avis', goods_path, class: 'navbar-item' %>
               </p>
-              <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"navbar-item" %>
+              <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class:"navbar-item" %>
             </div>
           </div>
         <% else %>
+        <!--
         <p class="control">
-          <%= link_to 'Pricing', pricing_index_path, class: 'navbar-item button is-dark' %>
+           <%= link_to 'Pricing', pricing_index_path, class: 'navbar-item button is-dark' %>
         </p>
+        -->
         <p class="control">
           <%= link_to "Sign In", new_user_session_path, class:"navbar-item button is-dark" %>
         </p>
@@ -96,12 +98,12 @@
 
 <% else %>
 
-     <nav class="navbar is-link" role="navigation" aria-label="main navigation">
+     <nav class="navbar" style="background: #00518f" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <%= link_to root_path, class:"navbar-item" do %>
           <h1 class="title is-5 has-text-white"><%= Rails.configuration.application_name %></h1>
         <% end  %>
-        <div class="navbar-burger burger" data-target="navbar">
+        <div class="navbar-burger burger s" data-target="navbar">
           <span></span>
           <span></span>
           <span></span>
@@ -127,7 +129,7 @@
             <% if user_signed_in? %>
 
               <div class="navbar-item has-dropdown is-hoverable">
-                <%= link_to 'Account', edit_user_registration_path, class: "navbar-link" %>
+                <%= link_to 'Menu', edit_user_registration_path, class: "navbar-link" %>
 
                 <div class="navbar-dropdown is-right">
                   <%= link_to edit_user_registration_path, class:"navbar-item" do %>
@@ -140,9 +142,11 @@
                 </div>
               </div>
             <% else %>
+            <!--
             <p class="control">
-              <%= link_to 'Pricing', pricing_index_path, class: 'navbar-item button is-dark' %>
+               <%= link_to 'Pricing', pricing_index_path, class: 'navbar-item button is-dark' %>
             </p>
+            -->
             <p class="control">
               <%= link_to "Sign In", new_user_session_path, class:"navbar-item button is-dark" %>
             </p>
@@ -157,12 +161,43 @@
     </div>
   </nav>
 
+
 <% end %>
 
 
-    <div class="container">
+
+
+    <div class="container is-fluid">
       <%= yield %>
     </div>
 
+    <!-- NAVBAR JS -->
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', () => {
+
+      // Get all "navbar-burger" elements
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+      // Check if there are any navbar burgers
+      if ($navbarBurgers.length > 0) {
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach( el => {
+          el.addEventListener('click', () => {
+
+            // Get the target from the "data-target" attribute
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+
+          });
+        });
+      }
+
+      });
+    </script>
   </body>
 </html>

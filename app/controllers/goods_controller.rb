@@ -111,6 +111,7 @@ end
     end
 
     def set_variables
+
       buyer = @good.buyer_id ? Review.find(@good.buyer_id) : nil
       seller = @good.seller_id ? Review.find(@good.seller_id) : nil
       @buyer = buyer && buyer.token == 'USED' && buyer.is_visible ? buyer : nil

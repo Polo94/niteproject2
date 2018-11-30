@@ -1,48 +1,78 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container is-mobile">
-  <div class="row is-mobile">
-    <div class="col-md-10 md-offset-1">
-      <em> <h1>Goods</h1> </em>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Name</th>
-            <th>Nickname</th>
-            <th>Seller</th>
-            <th>Property type</th>
-            <th>Location</th>
-            <th>Tel</th>
-            <th>Email</th>
-            <th>User</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @goods.each do |good| %>
-
+<section class="section">
+  <div class="container">
+    <h1 class="title">Liste avis</h1>
+    <hr>
+    <main>
+      <div class="table-container">
+<!-- Tables -->
+        <table class="table is-bordered is-narrow is-striped is-hoverable is-fullwidth">
+          <thead>
             <tr>
-              <td><%= good.title %></td>
-              <td><%= good.name %></td>
-              <td><%= good.nickname %></td>
-              <td><%= good.is_seller %></td>
-              <td><%= good.property_type %></td>
-              <td><%= good.location %></td>
-              <td><%= good.tel %></td>
-              <td><%= good.email %></td>
-              <!-- <td><%= good.user_id %></td> -->
-              <td><%= link_to 'Show', good, class: "button is-small is-active" %></td>
-              <td><%= link_to 'Hide', good_reviews_path(good), class: "button is-small is-active" %></td>
+              <th scope="col">Title</th>
+              <th scope="col">Name</th>
+              <th scope="col">Nickname</th>
+              <th scope="col">Tel</th>
+              <th scope="col">Email</th>
+              <th scope="col">Property type</th>
+              <th scope="col">Location</th>
+              <th scope="col">Seller Name</th>
+              <th scope="col">Seller Nickname</th>
+              <th scope="col">Seller Tel</th>
+              <th scope="col">Seller Email</th>
+              <th scope="col">Buyer Name</th>
+              <th scope="col">Buyer Nickname</th>
+              <th scope="col">Buyer Tel</th>
+              <th scope="col">Buyer Email</th>
+              <th colspan="3"></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-      <br>
+          </thead>
 
-      <%= link_to 'New Good', new_good_path, class: "button is-info" %>
+          <tbody>
+
+            <% @goods.each do |good| %>
+
+              <tr>
+                <td><%= good.title %></td>
+                <td><%= good.name %></td>
+                <td><%= good.nickname %></td>
+                <td><%= good.tel %></td>
+                <td><%= good.email %></td>
+                <td><%= good.property_type %></td>
+                <td><%= good.location %></td>
+
+                <% if good.seller_id %>
+                <% seller = Review.find(good.seller_id) %>
+                <td><%= seller.nickname %></td>
+                <td><%= seller.name %></td>
+
+                <td><%= seller.tel %></td>
+                <td><%= seller.email %></td>
+                <% end %>
+
+                <% if good.buyer_id %>
+                <% buyer = Review.find(good.buyer_id) %>
+                <td><%= buyer.name %></td>
+                <td><%= buyer.nickname  %></td>
+                <td><%= buyer.tel %></td>
+                <td><%= buyer.email  %></td>
+
+                <% end %>
+
+
+                <!-- <td><%= good.user_id %></td> -->
+                <!-- <td><%= link_to 'Show', good, class: "button is-small is-active" %></td> -->
+                <td><%= link_to 'Masquer Avis', good_reviews_path(good), class: "button is-small is-active" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="is centered">
+              <button type="button" class="button is-link is-outlined is-rounded"><%= link_to 'Créer un Avis', new_good_path%></button>
+      </div>
+
+    </main>
+  </div>
+</section>

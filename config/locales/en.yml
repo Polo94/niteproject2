@@ -31,3 +31,27 @@
 
 en:
   hello: "Hello world"
+  goods:
+    home:
+
+    index:
+
+    details:
+
+    new:
+
+    edit:
+
+    show:
+
+    _form:
+
+  reviews:
+    _form:
+
+    index:
+
+    show:
+
+  users:
+    show:

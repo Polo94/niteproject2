@@ -10,6 +10,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
+
   end
 
   def update
@@ -23,6 +24,8 @@ class ReviewsController < ApplicationController
     end
     respond_to do |format|
       if @object.save
+        @object.stars = ((@object.service_quality + @object.interlocutor_skills + @object.monitoring_care) / 3).round(2)
+        @object.save
         format.html { redirect_to good_reviews_path(@good), notice: 'Review was successfully updated.'}
       else
         format.html { render :new }
@@ -34,7 +37,10 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(
-      :stars,
+      :name,
+      :nickname,
+      :tel,
+      :email,
       :service_quality,
       :interlocutor_skills,
       :monitoring_care,
@@ -47,14 +53,13 @@ class ReviewsController < ApplicationController
   end
 
   def set_object_with_token
-    puts("randomsentance")
+
     if params['token'] == @buyer.token && @buyer.token != "USED"
       @object = @buyer
-      puts("here")
+
     elsif params['token'] == @seller.token && @seller.token != "USED"
       @object = @seller
-      puts("there")
-    puts("ici")
+
     ## else
       ## retourner une erreur
     end

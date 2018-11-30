@@ -1,0 +1,31 @@
+
+
+
+
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">Mon profil</h1>
+    <hr>
+    <main>
+      <div class="content has-text-centered">
+        <h1><%= current_user.company_name %></h1>
+        <p></p>
+        <h2><%= current_user.name %> <%= current_user.first_name %></h2>
+        <h2><%= current_user.location.capitalize %></h2>
+        <h2><%= current_user.url %></h2>
+        <h2><%= current_user.tel %></h2>
+        <h2><%= current_user.email %></h2>
+
+
+      </div>
+    </main>
+
+  </div>
+  <br>
+<div class="content has-text-centered">
+  <%= link_to "Modifier profil", edit_user_registration_path(current_user), class: "button is-link"  %>
+  <% link_to "Profil", user_path(current_user), class: "button is-link"  %>
+</div>
+
+</section>

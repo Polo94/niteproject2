@@ -1,54 +1,73 @@
+<section class="section">
+  <div class="container">
+    <main>
+
 <br>
-<%= image_tag(@good.thumbnail.variant(resize: "650x750")) %>
+<%= image_tag(@good.thumbnail.variant(resize: "600x700")) %>
 <br>
 <%= "Vente #{@good.property_type} " %>
 <br>
 <%= "Le #{@good.created_at.strftime("%-d/%-m/%-y")} à #{@good.location.capitalize}" %>
 <br>
-<%= @good.name %>
+
 <br>
 <!-- ajouter ici le nom de l'agence en faisant @good.user.nom_de_ta_variable_avec_le_nom_d_agence -->
+<br>
 <% if @buyer %>
-  <%= "Buyer review + étoiles + comments:" %>
-  <p>Acheteur</p>
+  <b> <%= "Avis acheteur : #{@buyer.nickname.capitalize} #{@buyer.name.capitalize[0]}" %>. </b>
   <br>
-  <%= @buyer.testimony %>
-  <%= "total stars ==" %>
+
+  <br>
+  <%= "Accueil général ==" %>
   <%= render "stars", seller_stars: @buyer.stars, buyer_stars: @buyer.stars %>
-  <%= "service_quality ==" %>
+  <%= "Qualité du service ==" %>
   <%= render "stars", seller_stars: @buyer.service_quality, buyer_stars: @buyer.service_quality %>
   <br>
-  <%= "interlocutor_skills ==" %>
+  <%= "Compétence interlocuteur ==" %>
   <%= render "stars", seller_stars: @buyer.interlocutor_skills, buyer_stars: @buyer.interlocutor_skills %>
-  <%= "monitoring_care ==" %>
+  <%= "Accompagnement et suivi ==" %>
   <%= render "stars", seller_stars: @buyer.monitoring_care, buyer_stars: @buyer.monitoring_care %>
   <br>
+  <%= "Témoignage ==" %>
+  <%= @buyer.testimony %>
 <% end %>
+
+<br>
+<br>
 <% if @seller %>
-  <%= "Seller review + étoiles + comments:" %>
-  <br>
-  <%= @seller.testimony %>
-  <%= "total stars ==" %>
+<b> <%= "Avis vendeur : #{@seller.nickname.capitalize} #{@seller.name.capitalize[0]}" %>. </b>
+<br>
+
+  <%= "Accueil général ==" %>
   <%= render "stars", seller_stars: @seller.stars, buyer_stars: @seller.stars %>
-  <%= "service_quality ==" %>
+  <%= "Qualité du service ==" %>
   <%= render "stars", seller_stars: @seller.service_quality, buyer_stars: @seller.service_quality %>
   <br>
-  <%= "interlocutor_skills ==" %>
+  <%= "Compétence interlocuteur ==" %>
   <%= render "stars", seller_stars: @seller.interlocutor_skills, buyer_stars: @seller.interlocutor_skills %>
-  <%= "monitoring_care ==" %>
+  <%= "Accompagnement et suivi ==" %>
   <%= render "stars", seller_stars: @seller.monitoring_care, buyer_stars: @seller.monitoring_care %>
   <br>
+  <%= "Témoignage ==" %>
+  <%= @seller.testimony %>
+  <br>
 <% end %>
-<h3>Moyennes</h3>
-<%= "total stars ==" %>
+<br>
+
+<b>Moyennes :</b>
+<br>
+<%= "Accueil général ==" %>
 <%= render "stars", seller_stars: (@seller ? @seller.stars : @buyer.stars), buyer_stars: @buyer ? @buyer.stars : @seller.stars %>
-<%= "service_quality ==" %>
+<%= "Qualité du service ==" %>
 <%= render "stars", seller_stars: @seller ? @seller.service_quality : @buyer.service_quality, buyer_stars: @buyer ? @buyer.service_quality : @seller.service_quality %>
 <br>
-<%= "interlocutor_skills ==" %>
+<%= "Compétence interlocuteur ==" %>
 <%= render "stars", seller_stars: @seller ? @seller.interlocutor_skills : @buyer.interlocutor_skills, buyer_stars: @buyer ? @buyer.interlocutor_skills : @seller.interlocutor_skills %>
-<%= "monitoring_care ==" %>
+<%= "Accompagnement et suivi ==" %>
 <%= render "stars", seller_stars: @seller ? @seller.monitoring_care : @buyer.monitoring_care, buyer_stars: @buyer ? @buyer.monitoring_care : @seller.monitoring_care %>
 <br>
 
-<%= link_to 'Back', root_path, class: "button is-primary" %>
+<%= link_to 'Back', root_path, class: "button is-link" %>
+    </main>
+  </div>
+</section>

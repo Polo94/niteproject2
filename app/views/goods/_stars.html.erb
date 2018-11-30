@@ -1,5 +1,5 @@
 <% total_stars = (buyer_stars + seller_stars) / 2.0 %>
-<%= total_stars %>
+<%= total_stars.round(2) %>
 <% Integer(total_stars).times do %><i class="fas fa-star"></i><% end %>
 <% after_dot = total_stars.to_s.split(".") %>
 <% half_star = (after_dot[1] && after_dot[1] != "0") ? true : false %>

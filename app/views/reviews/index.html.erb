@@ -2,8 +2,10 @@
 <br>
 <div class="columns">
   <div class="section">
-    
-    <%= @seller.testimony if @seller %>
+    <div>
+      <%= @seller.testimony if @seller %>
+    </div>
+
 
 <% if @seller && @seller.token != "USED" %>
   <%= link_to "seller_form" ,good_review_path(@good, @seller, token: @seller.token), class: "button is-info"  %>
@@ -22,7 +24,10 @@
 <br>
 <br>
 <div class="section">
-  <%= @buyer.testimony if @buyer %>
+  <div>
+    <%= @buyer.testimony if @buyer %>
+  </div>
+
 <% if @buyer && @buyer.token != "USED" %>
   <%= link_to "buyer_form" ,good_review_path(@good, @buyer, token: @buyer.token), class: "button is-info"  %>
   <%= mail_to("", "send mail to buyer", { subject: 'Invitation to complete form', body: "http://localhost:3000/goods/#{@good.id}/reviews/#{@buyer.id}?token=#{@buyer.token}", class: "button is-outlined"} ) %>
@@ -35,6 +40,6 @@
 <br>
 <br>
   <div class="section">
-<%= link_to goods_path, class: "button is-info" do %>Retour aux biens<% end %>
+<%= link_to goods_path, class: "button is-link" do %>Retour aux biens<% end %>
 </div>
 </div>
