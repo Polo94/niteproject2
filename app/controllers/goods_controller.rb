@@ -5,16 +5,20 @@ class GoodsController < ApplicationController
   before_action :authenticate_user!, except: [:home, :details]
 
 
+
+
   # GET /goods
   # GET /goods.json
   def index
-    @goods = Good.where(user_id: current_user.id).order("created_at DESC")
+    @goods = Good.where(user_id: current_user.id).order(created_at: :desc)
+
 
   end
 
   # GET /goods/1
   # GET /goods/1.json
   def show
+
   end
 
   # GET /goods/new
@@ -27,6 +31,8 @@ class GoodsController < ApplicationController
   end
 
   def home
+    #@goods = Good.order(created_at: :desc).page(params[:page])
+
   end
 
   def details
@@ -39,8 +45,8 @@ class GoodsController < ApplicationController
 
     respond_to do |format|
       if @good.save
-        @good.seller_id = Review.create({token: (rand(500..5000) * @good.id + @good.title.length), is_visible: false}).id
-        @good.buyer_id = Review.create({token: (rand(500..5000) * @good.id + @good.name.length), is_visible: false}).id
+        @good.seller_id = Review.create({token: (rand(500..5000) * @good.id + @good.title.length), is_visible: false, token_confirm: (rand(500..5000) * @good.id + @good.title.length)}).id
+        @good.buyer_id = Review.create({token: (rand(500..5000) * @good.id + @good.title.length), is_visible: false, token_confirm: (rand(500..5000) * @good.id + @good.title.length)}).id
         @good.save!
         format.html { redirect_to good_reviews_path(@good), notice: 'Good was successfully created.' }
         format.json { render :show, status: :created, location: @good }

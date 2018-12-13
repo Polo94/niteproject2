@@ -1,0 +1,20 @@
+<% if @object %>
+  <%= simple_form_for @object, url: good_review_path(@good, @object), method: :put, authenticity_token: true do |f| %>
+
+    <div class="form-inputs">
+      <br>
+        <h3>Confirmer mon avis</h3>
+      <br>
+
+
+      <%= f.input :title, :as => :hidden, :input_html => { :value => @token } %>
+    </div>
+
+    <br>
+    <div class="form-actions">
+      <%= f.button :submit, class: "button is-info" %>
+    </div>
+  <% end %>
+<% else %>
+  <p>You are not authorized to perform this action</p>
+<% end %>

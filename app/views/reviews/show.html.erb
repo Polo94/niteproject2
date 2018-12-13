@@ -1,3 +1,10 @@
-<%= render 'form' %>
-
+<% if @object %>
+  <% if @object.token != "USED" %>
+    <%= render 'form' %>
+  <% elsif @object.token_confirm != "USED" %>
+    <%= render 'form_confirm' %>
+  <% end %>
+<% else %>
+  <p>Il n'y à rien a voir ici</p>
+<% end %>
 <%= link_to 'Back', goods_path %>

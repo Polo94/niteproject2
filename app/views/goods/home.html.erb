@@ -38,18 +38,21 @@
                       <% end %>
                     <% end %>
                   <% end %>
-
-                <p><%= (sum / count).round(2) %></p>
+                  <% if sum && sum != 0 && count && count != 0 %>
+                    <p><%= (sum / count).round(2) %></p>
+                  <% end %>
                 <% end %>
-                <% super_stars = (sum / count).round(2)%>
-                <% Integer(super_stars).times do %><i class="fas fa-star"></i><% end %>
-                <% after_dot = super_stars.to_s.split(".") %>
-                <% half_star = (after_dot[1] && after_dot[1] != "0") ? true : false %>
-                <% if half_star == true %>
-                  <i class="fas fa-star-half-alt"></i>
+                <% if sum  && sum != 0 && count && count != 0 %>
+                  <% super_stars = (sum / count).round(2)%>
+                  <% Integer(super_stars).times do %><i class="fas fa-star"></i><% end %>
+                  <% after_dot = super_stars.to_s.split(".") %>
+                  <% half_star = (after_dot[1] && after_dot[1] != "0") ? true : false %>
+                  <% if half_star == true %>
+                    <i class="fas fa-star-half-alt"></i>
+                  <% end %>
+                  <% empty_stars = 5 - super_stars %>
+                  <% (Integer(empty_stars)).times do %><i class="far fa-star"></i><% end %>
                 <% end %>
-                <% empty_stars = 5 - super_stars %>
-                <% (Integer(empty_stars)).times do %><i class="far fa-star"></i><% end %>
               </div>
           </div>
         </div>
@@ -76,13 +79,16 @@
           <h3 class="title"><%= "Vente #{good.property_type} " %></h2>
           <p><%= "le #{good.created_at.strftime("%-d/%-m/%-y")} à #{good.location.capitalize}" %></p>
           <p><%= good.user.name.capitalize %></p>
+          <% if good.nickname && good.name %>
           <p><%= "Vendeur : #{good.nickname.capitalize} #{good.name.capitalize[0]}" %></p>
+          <% end %>
           <p> <% object = [] %>
               <% seller = Review.find(good.seller_id) %>
               <% buyer = Review.find(good.buyer_id) %>
               <% object << seller if seller && seller.is_visible && seller.token == 'USED' %>
               <% object << buyer if buyer && buyer.is_visible && buyer.token == 'USED' %>
               <% review = object.sort {|a, b| a[:stars] <=> b[:stars]}.last %>
+
               <%= render "stars", seller_stars: review.stars, buyer_stars: review.stars %>
           </p>
 
@@ -118,6 +124,10 @@
 
 
   </div>
+
+  <!-- kaminari
+  <#%= paginate @goods %> -->
+
   <nav class="pagination" role="pagination" aria-label="pagination">
     <a class="pagination-previous" title="First page" disabled>Previous</a>
     <a class="pagination-next">Next page</a>
