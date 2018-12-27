@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
 
   def index
 
+
   end
 
   def show
@@ -19,8 +20,9 @@ class ReviewsController < ApplicationController
     if @object.token != "USED"
       @object.update(review_params)
       create = 1
-      # dfinir ls variables de la review a envoyer dans le mail
-      ApplicationMailer.token_confirm_email(@object.email).deliver
+      opt = {good_id: @good.id, review_id: @object.id, token: @object.token_confirm}
+      p opt
+      ApplicationMailer.token_confirm_email(@object.email, opt).deliver
       @object.token = "USED"
       @object.is_visible = true
     elsif @object.token == "USED" && current_user && @object.token_confirm == "USED"

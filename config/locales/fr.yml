@@ -29,15 +29,14 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+fr:
   goods:
     home:
-      reviews: Number of reviews
-      sale: Sale
-      seller_review: Seller review
-      buyer_review: Buyer review
-      satisfaction_level: Satisfaction level
-
+      reviews: Nombre d'avis
+      sale: Vente
+      seller_review: Avis du vendeur
+      buyer_review: Avis de l'acheteur
+      satisfaction_level: Niveau de satisfaction
 
     index:
 
@@ -45,22 +44,20 @@ en:
 
     new:
 
-
     edit:
 
     show:
 
     _form:
-      title: Title
-      property_type: Property_type
-      location: Location
-      choose_an_image: Insert a photo of the property
-      create_good: Create a feedback form
-      back: Back
+      title: Titre
+      property_type: Type de bien
+      location: Commune du bien
+      choose_an_image: Insérer une photo du bien
+      create_good: Création d'un questionnaire
+      back: Retour
 
   reviews:
     _form:
-
 
     index:
 

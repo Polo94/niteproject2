@@ -14,7 +14,8 @@
 
             <% end %>
               <div class="column">
-                <p><%= " #{@goods.count} avis" %></p>
+                <p><%= link_to "EN", url_for(only_path: true, locale: "en") %> - <%= link_to "FR", url_for(only_path: true, locale: "fr") %></p>
+                <p><%= "#{t("goods.home.reviews")} : #{@goods.count} " %></p>
               </div>
 
               <div class="column">
@@ -65,7 +66,9 @@
   <!-- <div class="notification is-multiline is-fluid is-centered"> -->
 
   <div class="columns is-multiline">
+
     <% @goods.each do |good| %>
+
     <br>
     <div class="column is-half-tablet is-half-desktop">
       <div class="columns">
@@ -76,7 +79,7 @@
           </figure>
         </div>
         <div class="column content has-text-centered">
-          <h3 class="title"><%= "Vente #{good.property_type} " %></h2>
+          <h3 class="title"><%= "#{t("go.home.sale")} #{good.property_type} " %></h2>
           <p><%= "le #{good.created_at.strftime("%-d/%-m/%-y")} à #{good.location.capitalize}" %></p>
           <p><%= good.user.name.capitalize %></p>
           <% if good.nickname && good.name %>
@@ -120,14 +123,15 @@
         <%= link_to details_good_path(good), class:"button is-link is-fullwidth" do %>Détails<% end %>
       </footer>
     </div>
+
     <% end %>
 
 
   </div>
+  <!-- kaminari -->
+  <%= paginate @goods %>
 
-  <!-- kaminari
-  <#%= paginate @goods %> -->
-
+<!--
   <nav class="pagination" role="pagination" aria-label="pagination">
     <a class="pagination-previous" title="First page" disabled>Previous</a>
     <a class="pagination-next">Next page</a>
@@ -152,6 +156,7 @@
       </li>
     </ul>
   </nav>
+-->
 
 </div>
 <!-- FOOTER SITE -->

@@ -10,7 +10,9 @@ class GoodsController < ApplicationController
   # GET /goods
   # GET /goods.json
   def index
+
     @goods = Good.where(user_id: current_user.id).order(created_at: :desc)
+    @goods = Good.page(params[:page]).per(5)
 
 
   end
@@ -31,7 +33,11 @@ class GoodsController < ApplicationController
   end
 
   def home
-    #@goods = Good.order(created_at: :desc).page(params[:page])
+
+    @goods = Good.order(created_at: :desc).page(params[:page]).per(4)
+    #@goods = Good.page(params[:page])
+    #@goods = Good.page(params[:page])
+
 
   end
 

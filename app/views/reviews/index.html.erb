@@ -1,4 +1,3 @@
-
 <br>
 <div class="columns">
   <div class="section">
@@ -13,7 +12,7 @@
 
   Merci de bien vouloir compléter le questionnaire de satisfaction à l'adresse ci-dessous :
 
-    http://localhost:3000/goods/#{@good.id}/reviews/#{@seller.id}?token=#{@seller.token}", class: "button is-outlined"}) %>
+    #{good_reviews_url(@good, @seller, token: @seller.token)}", class: "button is-outlined"}) %>
 
 <% elsif @seller && @seller.token == "USED" && current_user && @seller.token_confirm == "USED" %>
   <%= link_to good_review_path(@good, @seller), method: :patch do %>
@@ -30,7 +29,7 @@
 
 <% if @buyer && @buyer.token != "USED" %>
   <%= link_to "buyer_form" ,good_review_path(@good, @buyer, token: @buyer.token), class: "button is-info"  %>
-  <%= mail_to("", "send mail to buyer", { subject: 'Invitation to complete form', body: "http://localhost:3000/goods/#{@good.id}/reviews/#{@buyer.id}?token=#{@buyer.token}", class: "button is-outlined"} ) %>
+  <%= mail_to("", "send mail to buyer", { subject: 'Invitation to complete form', body: "#{good_review_url(@good, @buyer, token: @buyer.token)}", class: "button is-outlined"} ) %>
 <% elsif @buyer && @buyer.token == "USED" && current_user && @buyer.token_confirm == "USED" %>
   <%= link_to good_review_path(@good, @buyer), method: :patch do %>
     <p class="button is-info is-outlined">Make B. Review <%= @buyer.is_visible ? "invisible" : "visible" %></p>
