@@ -1,0 +1,93 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+de:
+  devise:
+    registrations:
+      name: Name des Geschäftsführers
+      first_name: Vorname des Geschäftsführers
+      user_name: Benutzername
+      company_name: Firmenname
+      location: Ort
+      tel: Handynummer
+      url: Url
+      email: E-Mailadresse
+      password: Passwort
+
+  good:
+    home:
+      reviews: Anzahl der Bewertungen
+      sale: Sale
+      seller_review: Seller review
+      buyer_review: Buyer review
+      satisfaction_level: Satisfaction level
+
+
+    index:
+
+    details:
+
+    new:
+      title: Title test
+
+
+    edit:
+
+    show:
+
+    form:
+      title: Titel
+      property_type: Objekttyp
+      location: Ort des Objektes
+      choose_an_image: Insert a photo of the property
+      create_good: Create a feedback form
+      back: Back
+
+  reviews:
+    form:
+      name: Name
+      nickname: Vorname
+      location: Ort
+      tel: Handynummer
+      email: E-Mailadresse
+      service_quality: Qualität der Dienstleistung
+      service_quality: Qualität der Dienstleistung
+      interlocutor_skills: Kompetenz des Ansprechpartners
+      monitoring_care: Begleitung und Betreuung
+      company_recommendation: Empfehung des Unternehmens
+      testimony: Bewertung
+
+    index:
+
+    show:
+
+  users:
+    show:

@@ -1,0 +1,12 @@
+<% if @object %>
+  <% if @object.token != "USED" %>
+    <%= render 'form' %>
+  <% elsif @object.token_confirm != "USED" %>
+    <%= render 'form_confirm' %>
+  <% end %>
+<% else %>
+  <p><%= "#{t("views.review.show.nothing_here")} " %></p>
+<% end %>
+<div class="button is-success">
+  <%= link_to "#{t("views.application.back")} ", goods_path %>
+</div>

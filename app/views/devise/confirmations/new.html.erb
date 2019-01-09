@@ -1,7 +1,7 @@
 <section class="section">
   <div class="columns is-centered">
     <div class="column is-4">
-		<h2 class="title is-2">Resend confirmation instructions</h2>
+		<h2 class="title is-2"><%= "#{t("views.devise.confirmations.new.title")}" %></h2>
 
 		<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
 		  <%= f.error_notification %>
@@ -15,7 +15,7 @@
 			</div>
 
 		  <div class="form-actions">
-		    <%= f.button :submit, "Resend confirmation instructions", class:'button is-warning' %>
+		    <%= f.button :submit, "#{t("views.devise.confirmations.new.title")}", class:'button is-warning' %>
 		  </div>
 		<% end %>
 

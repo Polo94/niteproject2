@@ -2,7 +2,7 @@
   <div class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title">
-        <i class="fa fa-book"></i> <%= current_user.name %>'s Opinion
+        <i class="fa fa-good"></i> <%= current_user.name %>'s Opinion
       </h1>
       <h2 class="subtitle">
         Download or manage your goods below
@@ -12,8 +12,8 @@
 </section>
 
   <% if @opinion_goods.exists? %>
-    <div class="book-grid">
-      <%= render @opinion_goods, book: @good %>
+    <div class="good-grid">
+      <%= render @opinion_goods, good: @good %>
     </div>
   <% else %>
   <article class="message">

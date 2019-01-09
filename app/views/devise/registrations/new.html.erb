@@ -11,19 +11,55 @@
 
     <div class="field">
       <div class="control">
-      <%= f.input :name, required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      <%= f.input :name, label: t('.name'), required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
       </div>
     </div>
 
     <div class="field">
       <div class="control">
-      <%= f.input :email, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      <%= f.input :first_name, label: t('.first_name'), required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
       </div>
     </div>
 
     <div class="field">
       <div class="control">
-        <%= f.input :password, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" }, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+      <%= f.input :user_name, label: t('.user_name'), required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+      <%= f.input :company_name, label: t('.company_name'), required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+      <%= f.input :location, label: t('.location'), required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+      <%= f.input :tel, label: t('.tel'), required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+      <%= f.input :url, label: t('.url'), required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+      <%= f.input :email, label: t('.email'), required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :password, label: t('.password'), required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" }, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
       </div>
     </div>
 
@@ -35,7 +71,7 @@
 
     <div class="field">
       <div class="control">
-        <%= f.button :submit, "Sign up", class:"button is-medium" %>
+        <%= f.button :submit, "Sign up", class:"button is-medium is-info" %>
       </div>
     </div>
 

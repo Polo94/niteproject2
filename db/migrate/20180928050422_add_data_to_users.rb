@@ -6,6 +6,7 @@ class AddDataToUsers < ActiveRecord::Migration[5.2]
     add_column :users, :card_exp_month, :integer
     add_column :users, :card_exp_year, :integer
     add_column :users, :card_type, :string
+    add_column :users, :admin, :boolean
     add_column :users, :subscribed, :boolean
   end
 end

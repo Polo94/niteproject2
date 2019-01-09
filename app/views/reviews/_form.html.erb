@@ -1,0 +1,40 @@
+<% if @object %>
+  <%= simple_form_for @object, url: good_review_path(@good, @object), method: :put, authenticity_token: true do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+
+
+      <br>
+      <h1><strong><%= "#{t("property_type.#{@good.property_type}")} à #{@good.location.capitalize}" %></strong></h1>
+      <br>
+
+      <br>
+      <%= f.input :name, required: true %>
+      <%= f.input :nickname, required: true %>
+      <%#= f.input :location, required: true %>
+      <%#= f.input :tel, required: true %>
+      <%= f.input :email, required: true %>
+
+      <%= f.input :service_quality, input_html: {  value: '5',min: '1', max: '5', step: 'any' }, required: true  %>
+      <%#, collection: [1,2,3,4,5,6,7,8,9,10]%>
+      <% f.input :service_quality, input_html: {  value: '5',min: '1', max: '5', step: 'any' }, required: true %>
+      <%= f.input :interlocutor_skills, input_html: {  value: '5',min: '1', max: '5', step: 'any' }, required: true %>
+      <%= f.input :monitoring_care, input_html: {  value: '5',min: '1', max: '5', step: 'any' }, required: true %>
+      <%= f.input :company_recommendation %>
+      <%= f.input :testimony, required: true %>
+      <%= f.input :recommendation, required: true, hint: "Cette recommandation ne sera pas affichée sur le site" %>
+      <%= f.input :token, as: :hidden %>
+    </div>
+
+    <br>
+    <div class="form-actions">
+      <%= f.button :button, class:"button is-link" do %>
+        <%= "#{t("views.good.create.create")} " %>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <p><%= "#{t("views.application.403")} " %></p>
+<% end %>

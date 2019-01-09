@@ -1,0 +1,151 @@
+fr:
+  activerecord:
+    models:
+      good: Bien
+      review: Avis
+      user: Utilisateur
+    attributes:
+      user:
+        email: Email contact
+        password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
+        current_password: Mot de passe actuel
+        name: Nom gérant(e)
+        first_name: Prénom gérant(e)
+        user_name: Nom d'utilisateur
+        company_name: Nom de l'agence
+        location: Adresse de la société
+        tel: Téléphone portable
+        url: Lien vers le site web de la société
+      good:
+        title: Titre de l'annonce
+        property_type: Type de bien
+        location: Emplacement du bien
+      review:
+        name: Nom
+        nickname: Prénom
+        tel: Numéro de téléphone portable
+        service_quality: Qualité de service
+        interlocutor_skills: Compétences de l'interlocuteur(trice)
+        monitoring_care: Accompagnement et suivi
+        testimony: Témoignage
+        recommandation: Recommendation
+        stars: Accueil général
+        company_recommendation: Recommendation de cette agence
+  property_type:
+    :0: Maison
+    :1: Appartement
+    :2: Terrain
+    :3: Commerce
+    :4: Bureaux
+
+  views:
+    devise:
+      confirmations:
+        new:
+          title: Renvoyer les instructions de confirmation
+        show:
+          activate: Activation du compte
+          choose_pwd: Choisissez un mot de passe
+          confirm_pwd: Confirmez votre mot de passe
+          activate: Activer mon compte
+        mailer:
+          confirmation_instructions:
+            body: Vous pouvez confirmer votre compte en suivant le lien ci-dessous
+            confirm_account: Confirmer mon compte
+          email_change:
+            body_present: Nous vous contactons pour vous notifier que votre email va être changé pour
+            body_past: Nous vous contactons pour vous notifier que votre email a été changé pour
+          reset_password_instructions:
+            body: Nous vous contactons pour vous informer que votre mot de passe a été changé
+      registrations:
+        edit:
+          leave_password_blank: Laisser ce champ vide pour le laisser inchangé
+          hint_password_confirm: Nous avons besoin de votre mot de passe actuel pour valider ces modifications
+          update: Mettre à jour
+          cancel_account: Supprimer mon compte
+          delete: Supprimer
+          confirm: Etes-vous sûr(e) ?
+    application:
+      hello: Bonjour
+      my_reviews: Mes avis
+      new_good: Nouveau bien
+      menu: Menu
+      edit_profile: Mettre à jour mon profil
+      my_profile: Voir mon profil
+      all_my_goods: Tous mes biens
+      disconnect: Déconnexion
+      sign_in: Connexion
+      sign_up: Créer un compte
+      show: Afficher
+      back: Retour
+      :403: Vous n'êtes pas autorisé(e) à effectuer cette action
+      good_notice_creation: Le bien a été créé avec succès
+      good_update_notice: Le bien a été mis à jour avec succes
+    good:
+      form:
+        pick_image: Choissisez une image
+      create:
+        create: Créer un bien
+      edit:
+        title: Mettre à jour ce bien
+      new:
+        title: Créer un bien
+      index:
+        all_goods: Tous mes biens
+        title: Titre
+        property_type: Type de propriété
+        location: Commune
+        seller_name: Nom vendeur(se)
+        seller_phone: Téléphone vendeur(se)
+        seller_mail: Mail vendeur(se)
+        buyer_name: Nom acheteur(se)
+        buyer_phone: Téléphone acheteur(se)
+        buyer_mail: Mail acheteur(se)
+        admin_reviews: Administrer les avis
+        create_new_good: Créer un nouveau bien
+      home:
+        reviews: Nombre d'avis
+        property_type: Vente %{property_type}
+        date_location: Le %{date} à %{location}
+        total_reviews: Nombre total d'avis - %{total_reviews}
+        general_satisfaction: Indice général de satisfaction
+        buyer_review: Avis de l'acheteur(se)
+        seller_review: Avis du vendeur(se)
+        total_stars: Moyenne générale du bien
+        more: Détails
+      details:
+        buyer_review: Avis acheteur(se) - %{buyer_first_name} %{buyer_last_name}.
+        seller_review: Avis vendeur(se) - %{seller_first_name} %{seller_last_name}.
+        company_name: Agence - %{company_name}
+        general_welcoming: Accueil général -
+        service_quality: Qualité du service -
+        interlocutor_skills: Compétences de l'interlocuteur(trice) -
+        monitoring_care: Accompagnement et suivi -
+        testimony: Témoignage -
+        average: Moyenne
+        back: Retour
+        unavailable: Cet avis n'est pas encore disponible
+        buyer_review_solo: Avis acheteur(se)
+        seller_review_solo: Avis vendeur(se)
+    user:
+      show:
+        title: Mon profil
+        edit_profile: Modifier mon profil
+    review:
+      form_confirm: Confirmer mon avis
+      form:
+        create: Créer mon avis
+      show:
+        nothing_here: Il n'y a rien à voir ici
+      index:
+        mail_subject: BientôtVendu.Com @ Service Qualité - Invitation à remplir le questionnaire de satisfaction
+        mail_body: "Bonjour,\nMerci de bien vouloir compléter le questionnaire de satisfaction à l'addresse ci-dessous "
+        visible:
+        invisible:
+        make_review: Rendre l'avis
+        buyer_form: Formulaire acheteur(se
+        seller_form: Formulaire vendeur(se)
+        send_mail_seller: Envoyer un mail au vendeur(se)
+        send_mail_buyer: Envoyer un mail à l'acheteur(se)
+        back_to_goods: Retour aux biens

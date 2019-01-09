@@ -30,4 +30,76 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  devise:
+    registrations:
+      name:
+      first_name:
+      user_name:
+      company_name:
+      location:
+      tel:
+      url:
+      email:
+      password:
+
+  good:
+    home:
+      reviews: Number of reviews
+      sale: Sale
+      seller_review: Seller review
+      buyer_review: Buyer review
+      satisfaction_level: Satisfaction level
+
+
+    index:
+
+    details:
+      buyer_review: Buyer Review
+      seller_review: Seller Review
+      name: Name
+      nickname: Nickname
+      location: location
+      tel: Telephone
+      email: Email
+      service_quality: Service Quality
+      service_quality: Service Quality
+      interlocutor_skills: Interlocutor Skills
+      monitoring_care: Monitoring Care
+      company_recommendation: Company Recommendation
+      testimony: Testimony
+
+    new:
+      title: Title test
+
+
+    edit:
+
+    show:
+
+    form:
+      title: Titless
+      property_type: Property_type
+      location: Location
+      choose_an_image: Insert a photo of the property
+      create_good: Create a feedback form
+      back: Back
+  reviews:
+    form:
+      name: Name
+      nickname: Nickname
+      location: location
+      tel: Telephone
+      email: Email
+      service_quality: Service Quality
+      service_quality: Service Quality
+      interlocutor_skills: Interlocutor Skills
+      monitoring_care: Monitoring Care
+      company_recommendation: Company Recommendation
+      testimony: Testimony
+
+    index:
+
+    show:
+
+  users:
+    show:

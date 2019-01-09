@@ -27,7 +27,7 @@
 
           <div class="field">
             <div class="control">
-            <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+            <%= f.input :password, autocomplete: "off", hint: "#{t("views.devise.registrations.edit.leave_password_blank")}", required: false, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
             </div>
           </div>
 
@@ -39,17 +39,17 @@
 
           <div class="field">
             <div class="control">
-              <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+              <%= f.input :current_password, hint: "#{t("views.devise.registrations.edit.hint_password_confirm")}", required: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
             </div>
         </div>
 
-        <%= f.button :submit, "Update", class:"button is-warning" %>
+        <%= f.button :submit, "#{t("views.devise.registrations.edit.update")}", class:"button is-warning" %>
 
       <% end %>
 
         <hr />
-        <h3 class="title is-5">Cancel my account</h3>
-        <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+        <h3 class="title is-5"><%= "#{t("views.devise.registrations.edit.cancel_account")}" %></h3>
+        <p><%= link_to "#{t("views.devise.registrations.edit.delete")}", registration_path(resource_name), data: { confirm:  "#{t("views.devise.registrations.edit.confirm")}" }, method: :delete %></p>
 
       </div>
     </div>

@@ -1,6 +1,8 @@
 class CreateGoods < ActiveRecord::Migration[5.2]
   def change
     create_table :goods do |t|
+      t.datetime :created_at, null: false
+      
       t.string :title
       t.string :name
       t.string :nickname

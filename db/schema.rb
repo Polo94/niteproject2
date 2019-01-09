@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_28_050908) do
+ActiveRecord::Schema.define(version: 2019_01_09_214636) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -34,24 +34,36 @@ ActiveRecord::Schema.define(version: 2018_09_28_050908) do
   end
 
   create_table "goods", force: :cascade do |t|
-    t.string "title"
-    t.string "name"
-    t.string "nickname"
-    t.boolean "seller"
-    t.string "property_type"
-    t.string "location"
-    t.string "tel"
-    t.string "email"
-    t.integer "user_id"
     t.datetime "created_at", null: false
+    t.string "title"
+    t.boolean "is_seller"
+    t.integer "property_type"
+    t.string "location"
+    t.integer "user_id"
     t.datetime "updated_at", null: false
+    t.integer "seller_id"
+    t.integer "buyer_id"
+    t.index ["buyer_id"], name: "index_goods_on_buyer_id"
+    t.index ["seller_id"], name: "index_goods_on_seller_id"
   end
 
-  create_table "opinions", force: :cascade do |t|
-    t.integer "good_id"
-    t.integer "user_id"
+  create_table "reviews", force: :cascade do |t|
+    t.float "service_quality"
+    t.float "interlocutor_skills"
+    t.float "monitoring_care"
+    t.boolean "company_recommendation"
+    t.text "testimony", limit: 250
+    t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_visible"
+    t.float "stars"
+    t.string "name"
+    t.string "nickname"
+    t.string "tel"
+    t.string "email"
+    t.string "token_confirm"
+    t.text "recommendation"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,7 +81,14 @@ ActiveRecord::Schema.define(version: 2018_09_28_050908) do
     t.integer "card_exp_month"
     t.integer "card_exp_year"
     t.string "card_type"
+    t.boolean "admin"
     t.boolean "subscribed"
+    t.string "first_name"
+    t.string "user_name"
+    t.string "company_name"
+    t.string "location"
+    t.string "tel"
+    t.string "url"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,6 +1,6 @@
-<h1>Editing Good</h1>
+<h1><%= "#{t("views.good.edit.title")} " %></h1>
 
 <%= render 'form', good: @good %>
 
-<%= link_to 'Show', @good %> |
-<%= link_to 'Back', goods_path %>
+<%= link_to "#{t("views.application.show")} ", @good %> |
+<%= link_to "#{t("views.application.back")} " , goods_path %>

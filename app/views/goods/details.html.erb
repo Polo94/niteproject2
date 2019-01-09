@@ -1,0 +1,86 @@
+<section class="section">
+  <div class="container">
+    <main>
+
+<br>
+<%= image_tag(@good.thumbnail.variant(resize: "600x700")) %>
+<br>
+<%= "#{t("views.good.home.property_type", property_type: t("property_type.#{@good.property_type}"))} " %>
+<br>
+<%= "#{t("views.good.home.date_location", date: @good.created_at.strftime("%-d/%-m/%-y"), location: @good.location.capitalize)} " %>
+<br>
+
+<br>
+<!-- ajouter ici le nom de l'agence en faisant @good.user.nom_de_ta_variable_avec_le_nom_d_agence -->
+<%= "#{t("views.good.details.company_name", company_name: @good.user.company_name)} " %>
+<br>
+<% if @buyer %>
+  <b> <%= "#{t("views.good.details.buyer_review", buyer_first_name: @buyer.nickname.capitalize, buyer_last_name: @buyer.name.capitalize[0])} " %></b>
+  <br>
+
+  <br>
+  <%= "#{t("views.good.details.general_welcoming")} " %>
+  <%= render "stars", seller_stars: @buyer.stars, buyer_stars: @buyer.stars %>
+  <%= "#{t("views.good.details.service_quality")} " %>
+  <%= render "stars", seller_stars: @buyer.service_quality, buyer_stars: @buyer.service_quality %>
+  <br>
+  <%= "#{t("views.good.details.interlocutor_skills")} " %>
+  <%= render "stars", seller_stars: @buyer.interlocutor_skills, buyer_stars: @buyer.interlocutor_skills %>
+  <%= "#{t("views.good.details.monitoring_care")} " %>
+  <%= render "stars", seller_stars: @buyer.monitoring_care, buyer_stars: @buyer.monitoring_care %>
+  <br>
+  <%= "#{t("views.good.details.testimony")} " %><br>
+  <%= @buyer.testimony %>
+  <%= "recommande l'agence" %>
+  <%= @buyer.company_recommendation ? "true" : "false" %>
+<% else %>
+  <b><%= "#{t("views.good.details.buyer_review_solo")} " %></b>
+  <%= "#{t("views.good.details.unavailable")} " %>
+<% end %>
+
+<br>
+<br>
+<% if @seller %>
+<b> <%= "#{t("views.good.details.seller_review", seller_first_name: @seller.nickname.capitalize, seller_last_name: @seller.name.capitalize[0])} " %></b>
+<br>
+
+  <%= "#{t("views.good.details.general_welcoming")} " %>
+  <%= render "stars", seller_stars: @seller.stars, buyer_stars: @seller.stars %>
+  <%= "#{t("views.good.details.service_quality")} " %>
+  <%= render "stars", seller_stars: @seller.service_quality, buyer_stars: @seller.service_quality %>
+  <br>
+  <%= "#{t("views.good.details.interlocutor_skills")} " %>
+  <%= render "stars", seller_stars: @seller.interlocutor_skills, buyer_stars: @seller.interlocutor_skills %>
+  <%= "#{t("views.good.details.monitoring_care")} " %>
+  <%= render "stars", seller_stars: @seller.monitoring_care, buyer_stars: @seller.monitoring_care %>
+  <br>
+  <%= "#{t("views.good.details.testimony")} " %>
+  <%= @seller.testimony %><br>
+  <%= "recommande l'agence" %>
+  <%= @seller.company_recommendation ? "true" : "false" %>
+  <br>
+  <% else %>
+    <b><%= "#{t("views.good.details.seller_review_solo")} " %></b>
+    <%= "#{t("views.good.details.unavailable")} " %>
+<% end %>
+<br>
+
+<br>
+<% if @buyer || @seller %>
+  <b><%= "#{t("views.good.details.average")} " %></b>
+  <%= "#{t("views.good.details.general_welcoming")} " %>
+  <%= render "stars", seller_stars: (@seller ? @seller.stars : @buyer.stars), buyer_stars: @buyer ? @buyer.stars : @seller.stars if @buyer || @seller %>
+  <%= "#{t("views.good.details.service_quality")} " %>
+  <%= render "stars", seller_stars: @seller ? @seller.service_quality : @buyer.service_quality, buyer_stars: @buyer ? @buyer.service_quality : @seller.service_quality if @buyer || @seller %>
+  <br>
+  <%= "#{t("views.good.details.interlocutor_skills")} " %>
+  <%= render "stars", seller_stars: @seller ? @seller.interlocutor_skills : @buyer.interlocutor_skills, buyer_stars: @buyer ? @buyer.interlocutor_skills : @seller.interlocutor_skills if @buyer || @seller %>
+  <%= "#{t("views.good.details.monitoring_care")} " %>
+  <%= render "stars", seller_stars: @seller ? @seller.monitoring_care : @buyer.monitoring_care, buyer_stars: @buyer ? @buyer.monitoring_care : @seller.monitoring_care if @buyer || @seller %>
+  <br>
+<% end %>
+
+<%= link_to "#{t("views.good.details.back")}", root_path, class: "button is-link" %>
+    </main>
+  </div>
+</section>
