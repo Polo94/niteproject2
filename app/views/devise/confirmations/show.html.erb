@@ -3,17 +3,17 @@
     <div class="column is-4">
       <%= form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:method => 'put'}, :id => 'activation-form' do |f| %>
         <%= devise_error_messages! %>
-          <h4 class="subtitle is-3">Account Activation<% if resource.try(:user_name) %> for <%= resource.user_name %><% end %></h4>
+          <h4 class="subtitle is-3"><%= "#{t("views.devise.confirmations.title")}" %><% if resource.try(:user_name) %> for <%= resource.user_name %><% end %></h4>
           <% if @requires_password %>
             <div class="field">
               <div class="control">
-                <%= f.label :password,'Choose a Password:', class:'label'%>
+                <%= f.label :password,"#{t("views.devise.confirmations.show.choose_pwd")}", class:'label'%>
                   <%= f.password_field :password, class:'input' %>
               </div>
             </div>
             <div class="field">
               <div class="control">
-                <%= f.label :password_confirmation,'Password Confirmation:', class:'label' %>
+                <%= f.label :password_confirmation,"#{t("views.devise.confirmations.show.confirm_pwd")}", class:'label' %>
                   <%= f.password_field :password_confirmation, class:'input'  %>
               </div>
             </div>
@@ -21,7 +21,7 @@
               <%= hidden_field_tag :confirmation_token,@confirmation_token %>
                 <div class="field">
                   <div class="control">
-                    <%= f.submit "Activate", class:'button is-warning' %>
+                    <%= f.submit "#{t("views.devise.confirmations.show.activate")}", class:'button is-warning' %>
                   </div>
                 </div>
       <% end %>

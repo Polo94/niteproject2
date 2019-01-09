@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_11_214432) do
+ActiveRecord::Schema.define(version: 2019_01_09_214636) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -36,26 +36,15 @@ ActiveRecord::Schema.define(version: 2018_12_11_214432) do
   create_table "goods", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "title"
-    t.string "name"
-    t.string "nickname"
     t.boolean "is_seller"
-    t.string "property_type"
+    t.integer "property_type"
     t.string "location"
-    t.string "tel"
-    t.string "email"
     t.integer "user_id"
     t.datetime "updated_at", null: false
     t.integer "seller_id"
     t.integer "buyer_id"
     t.index ["buyer_id"], name: "index_goods_on_buyer_id"
     t.index ["seller_id"], name: "index_goods_on_seller_id"
-  end
-
-  create_table "opinions", force: :cascade do |t|
-    t.integer "good_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -69,14 +58,12 @@ ActiveRecord::Schema.define(version: 2018_12_11_214432) do
     t.datetime "updated_at", null: false
     t.boolean "is_visible"
     t.float "stars"
-    t.string "title"
     t.string "name"
     t.string "nickname"
-    t.string "property_type"
-    t.string "location"
     t.string "tel"
     t.string "email"
     t.string "token_confirm"
+    t.text "recommendation"
   end
 
   create_table "users", force: :cascade do |t|

@@ -2,7 +2,7 @@
 
 <section class="section">
   <div class="container">
-    <h1 class="title">Liste avis</h1>
+    <h1 class="title"><%= "#{t("views.good.index.all_goods")} " %></h1>
     <hr>
     <main>
       <div class="table-container">
@@ -10,17 +10,15 @@
         <table class="table is-bordered is-narrow is-striped is-hoverable is-fullwidth">
           <thead>
             <tr>
-              <th scope="col">Title</th>
-              <th scope="col">Property type</th>
-              <th scope="col">Location</th>
-              <th scope="col">Seller Name</th>
-              <th scope="col">Seller Nickname</th>
-              <th scope="col">Seller Tel</th>
-              <th scope="col">Seller Email</th>
-              <th scope="col">Buyer Name</th>
-              <th scope="col">Buyer Nickname</th>
-              <th scope="col">Buyer Tel</th>
-              <th scope="col">Buyer Email</th>
+              <th scope="col"><%= "#{t("views.good.index.title")} " %></th>
+              <th scope="col"><%= "#{t("views.good.index.property_type")} " %></th>
+              <th scope="col"><%= "#{t("views.good.index.location")} " %></th>
+              <th scope="col"><%= "#{t("views.good.index.seller_name")} " %></th>
+              <th scope="col"><%= "#{t("views.good.index.seller_phone")} " %></th>
+              <th scope="col"><%= "#{t("views.good.index.seller_mail")} " %></th>
+              <th scope="col"><%= "#{t("views.good.index.buyer_name")} " %></th>
+              <th scope="col"><%= "#{t("views.good.index.buyer_phone")} " %>e</th>
+              <th scope="col"><%= "#{t("views.good.index.buyer_mail")} " %></th>
               <th colspan="3"></th>
             </tr>
             <%= paginate @goods %>
@@ -32,12 +30,12 @@
 
               <tr>
                 <td><%= good.title %></td>
-                <td><%= good.property_type %></td>
+                <td><%= "#{t("property_type.#{good.property_type}")}" %></td>
                 <td><%= good.location %></td>
 
                 <% if good.seller_id %>
                 <% seller = Review.find(good.seller_id) %>
-                <td><%= seller.nickname %></td>
+                <td><%= "#{seller.nickname} #{seller.name}"  %></td>
                 <td><%= seller.name %></td>
 
                 <td><%= seller.tel %></td>
@@ -56,14 +54,14 @@
 
                 <!-- <td><%= good.user_id %></td> -->
                 <!-- <td><%= link_to 'Show', good, class: "button is-small is-active" %></td> -->
-                <td><%= link_to 'Masquer Avis', good_reviews_path(good), class: "button is-small is-active" %></td>
+                <td><%= link_to "#{t("views.good.index.admin_reviews")} ", good_reviews_path(good), class: "button is-small is-active" %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
       <div class="is centered">
-              <button type="button" class="button is-link is-outlined is-rounded"><%= link_to 'Créer un nouveau bien', new_good_path%></button>
+              <button type="button" class="button is-link is-outlined is-rounded"><%= link_to "#{t("views.good.index.create_new_good")} ", new_good_path%></button>
       </div>
 
     </main>

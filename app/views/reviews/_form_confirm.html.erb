@@ -3,7 +3,7 @@
 
     <div class="form-inputs">
       <br>
-        <h3>Confirmer mon avis</h3>
+        <h3><%= "#{t("views.review.form_confirm")} " %></h3>
       <br>
 
 
@@ -16,5 +16,5 @@
     </div>
   <% end %>
 <% else %>
-  <p>You are not authorized to perform this action</p>
+  <p><%= "#{t("views.application.403")} " %></p>
 <% end %>

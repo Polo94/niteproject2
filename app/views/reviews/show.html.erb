@@ -5,6 +5,8 @@
     <%= render 'form_confirm' %>
   <% end %>
 <% else %>
-  <p>Il n'y à rien a voir ici</p>
+  <p><%= "#{t("views.review.show.nothing_here")} " %></p>
 <% end %>
-<%= link_to 'Back', goods_path %>
+<div class="button is-success">
+  <%= link_to "#{t("views.application.back")} ", goods_path %>
+</div>

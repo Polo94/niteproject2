@@ -91,4 +91,5 @@ class ReviewsController < ApplicationController
     @seller = Review.find(@good.seller_id)
     @buyer = Review.find(@good.buyer_id)
   end
+
 end

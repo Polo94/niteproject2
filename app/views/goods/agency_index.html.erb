@@ -1,0 +1,180 @@
+<!-- BANNIERE USER -->
+<section class="hero is-light is-bold">
+
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <% if @user %>
+            <h1 class="title is-1"> <%= @user.company_name.capitalize %></h1>
+            <a href="url"><%= @user.url %></a>
+
+          <% end %>
+            <div class="column">
+            <p class="control">
+              </p>
+              <!-- <p><%#= "#{t("views.good.home.reviews")} : #{@goods.count} " %></p> -->
+            </div>
+
+            <div class="column">
+              <!-- <% if current_user %>
+                <% total_goods = Good.where(user_id: current_user.id) %>
+                <% sum = 0 %>
+                <% count = 0 %>
+                <% total_goods.each do |good| %>
+                  <% if good.seller_id != nil %>
+                    <% r = Review.find(good.seller_id) %>
+                    <% if r.stars %>
+                      <% sum += r.stars %>
+                      <% count += 1 %>
+                    <% end %>
+                  <% end %>
+                  <% if good.buyer_id != nil %>
+                    <% r_bis = Review.find(good.buyer_id) %>
+                    <% if r_bis.stars %>
+                      <% sum += r_bis.stars %>
+                      <% count += 1 %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <% if sum && sum != 0 && count && count != 0 %>
+                  <p><%= (sum / count).round(2) %></p>
+                <% end %>
+              <% end %>
+              <% if sum  && sum != 0 && count && count != 0 %>
+                <% super_stars = (sum / count).round(2)%>
+                <% Integer(super_stars).times do %><i class="fas fa-star"></i><% end %>
+                <% after_dot = super_stars.to_s.split(".") %>
+                <% half_star = (after_dot[1] && after_dot[1] != "0") ? true : false %>
+                <% if half_star == true %>
+                  <i class="fas fa-star-half-alt"></i>
+                <% end %>
+                <% empty_stars = 5 - super_stars %>
+                <% (Integer(empty_stars)).times do %><i class="far fa-star"></i><% end %>
+              <% end %> -->
+            </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<br>
+<!-- AFFICHAGE REVIEWS -->
+<!-- <div class="notification is-multiline is-fluid is-centered"> -->
+
+<div class="columns is-multiline">
+
+  <% @goods.each do |good| %>
+
+  <br>
+  <div class="column is-half-tablet is-half-desktop">
+    <div class="columns">
+      <div class="column">
+        <!-- <figure class="image is-1by1"> -->
+        <figure class="image is-square">
+          <%= image_tag(good.thumbnail) %>
+        </figure>
+      </div>
+      <div class="column content has-text-centered">
+        <h3 class="title"><%= "#{t("views.good.home.property_type", property_type: t("property_type.#{good.property_type}"))} " %></h2>
+        <p><%= "#{t("views.good.home.date_location", date: good.created_at.strftime("%-d/%-m/%-y"), location: good.location.capitalize)} "%></p>
+        <!-- <p><%#= good.user.name.capitalize %></p> -->
+        <%# if good.nickname && good.name %>
+        <!-- <p><%#= "Vendeur : #{good.nickname.capitalize} #{good.name.capitalize[0]}" %></p> -->
+        <%# end %>
+
+        <%# if @stars %>
+        <p> <% object = [] %>
+            <% seller = Review.find(good.seller_id) %>
+            <% buyer = Review.find(good.buyer_id) %>
+            <% buyer = buyer.is_visible ? buyer : nil %>
+            <% seller = seller.is_visible ? seller : nil %>
+            <% object << seller if seller && seller.is_visible && seller.token == 'USED' %>
+            <% object << buyer if buyer && buyer.is_visible && buyer.token == 'USED' %>
+            <% review = object.sort {|a, b| a[:stars] <=> b[:stars]}.last %>
+        <b><%= "#{t("views.good.home.total_stars")} " %></b><br>
+        <% if seller && buyer %>
+            <%= render "stars", seller_stars: seller.stars, buyer_stars: buyer.stars %>
+        <% end %>
+        </p>
+
+        <%# end %>
+        <p>
+          <b><%= "#{t("views.good.home.buyer_review")} " %></b><br>
+          <% if buyer && buyer.is_visible %>
+            <%#= "total stars ==" %>
+            <%= render "stars", seller_stars: buyer.stars, buyer_stars: buyer.stars %>
+
+          <% end %>
+
+          <% if buyer && buyer.testimony %>
+            <%= buyer.testimony %>
+          <% end %>
+        </p>
+
+        <p>
+          <b><%= "#{t("views.good.home.seller_review")} " %></b><br>
+          <% if seller && seller.is_visible %>
+          <%#= "total stars ==" %>
+            <%= render "stars", seller_stars: seller.stars, buyer_stars: seller.stars %>
+          <% end %>
+
+          <% if seller && seller.testimony %>
+            <%= seller.testimony %>
+          <% end %>
+        </p>
+
+      </div>
+
+    </div>
+    <!-- FOOTER AVIS-->
+    <footer >
+      <%= link_to details_good_path(good), class:"button is-link is-fullwidth" do %><%= "#{t("views.good.home.more")} " %><% end %>
+    </footer>
+  </div>
+
+  <% end %>
+
+
+</div>
+
+
+<!--
+<nav class="pagination" role="pagination" aria-label="pagination">
+  <a class="pagination-previous" title="First page" disabled>Previous</a>
+  <a class="pagination-next">Next page</a>
+  <ul class="pagination-list">
+    <li>
+      <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+    </li>
+    <li>
+      <a class="pagination-link" aria-label="Goto page 2">2</a>
+    </li>
+    <li>
+      <a class="pagination-link" aria-label="Goto page 3">3</a>
+    </li>
+    <li>
+      <a class="pagination-link" aria-label="Goto page 4">4</a>
+    </li>
+    <li>
+      <span class="pagination-ellipsis">&hellip;</span>
+    </li>
+    <li>
+      <a class="pagination-link" aria-label="Goto page 20">20</a>
+    </li>
+  </ul>
+</nav>
+-->
+
+</div>
+<!-- FOOTER SITE -->
+<footer class="footer">
+<div class="section-heading is-light is-bold has-text-centered">
+  <p>
+    <strong>BientôtVendu</strong>
+  </p>
+</div>
+</footer>

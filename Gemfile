@@ -36,6 +36,8 @@ gem 'figaro'
 #kaminari
 gem 'kaminari'
 
+gem 'rails-i18n'
+
 
 
 # Use Capistrano for deployment

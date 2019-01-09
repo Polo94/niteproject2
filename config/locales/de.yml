@@ -29,22 +29,22 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+de:
   devise:
     registrations:
-      name:
-      first_name:
-      user_name:
-      company_name:
-      location:
-      tel:
-      url:
-      email:
-      password:
+      name: Name des Geschäftsführers
+      first_name: Vorname des Geschäftsführers
+      user_name: Benutzername
+      company_name: Firmenname
+      location: Ort
+      tel: Handynummer
+      url: Url
+      email: E-Mailadresse
+      password: Passwort
 
   good:
     home:
-      reviews: Number of reviews
+      reviews: Anzahl der Bewertungen
       sale: Sale
       seller_review: Seller review
       buyer_review: Buyer review
@@ -54,19 +54,6 @@ en:
     index:
 
     details:
-      buyer_review: Buyer Review
-      seller_review: Seller Review
-      name: Name
-      nickname: Nickname
-      location: location
-      tel: Telephone
-      email: Email
-      service_quality: Service Quality
-      service_quality: Service Quality
-      interlocutor_skills: Interlocutor Skills
-      monitoring_care: Monitoring Care
-      company_recommendation: Company Recommendation
-      testimony: Testimony
 
     new:
       title: Title test
@@ -77,25 +64,26 @@ en:
     show:
 
     form:
-      title: Titless
-      property_type: Property_type
-      location: Location
+      title: Titel
+      property_type: Objekttyp
+      location: Ort des Objektes
       choose_an_image: Insert a photo of the property
       create_good: Create a feedback form
       back: Back
+
   reviews:
     form:
       name: Name
-      nickname: Nickname
-      location: location
-      tel: Telephone
-      email: Email
-      service_quality: Service Quality
-      service_quality: Service Quality
-      interlocutor_skills: Interlocutor Skills
-      monitoring_care: Monitoring Care
-      company_recommendation: Company Recommendation
-      testimony: Testimony
+      nickname: Vorname
+      location: Ort
+      tel: Handynummer
+      email: E-Mailadresse
+      service_quality: Qualität der Dienstleistung
+      service_quality: Qualität der Dienstleistung
+      interlocutor_skills: Kompetenz des Ansprechpartners
+      monitoring_care: Begleitung und Betreuung
+      company_recommendation: Empfehung des Unternehmens
+      testimony: Bewertung
 
     index:
 

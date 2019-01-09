@@ -33,24 +33,45 @@
 
 <% if  user_signed_in? %>
 
+
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+
   <div class="navbar-brand">
+
     <%= link_to root_path, class:"navbar-item" do %>
       <h1 class="title is-5 has-text-white"><%= Rails.configuration.application_name %></h1>
     <% end  %>
+
+    <%= link_to url_for(only_path: true, locale: "en") do %>
+      <%= image_tag "en.png", class:"img-lang" %>
+    <% end %>
+    <%= link_to url_for(only_path: true, locale: "fr")do %>
+      <%= image_tag "fr.png" , class:"img-lang"  %>
+    <% end %>
+    <%= link_to url_for(only_path: true, locale: "de")do %>
+      <%= image_tag "de.png" , class:"img-lang"  %>
+    <% end %>
+    <%= link_to url_for(only_path: true, locale: "nl")do %>
+      <%= image_tag "nl.png" , class:"img-lang"  %>
+    <% end %>
+
     <div class="navbar-burger burger" data-target="navbar">
       <span></span>
       <span></span>
       <span></span>
     </div>
+
+
   </div>
 
+
   <div id="navbar" class="navbar-menu">
+
     <div class="navbar-start">
       <% if subscribed? %>
         <div class="navbar-item">
           <%= link_to opinion_index_path, class: 'navbar-item button is-dark' do %>
-            <i class="fa fa-good"></i> &nbsp;&nbsp; My Opinions
+            <i class="fa fa-good"></i> &nbsp;&nbsp; <%= "#{t("views.application.my_reviews")} " %>
           <% end %>
         </div>
       <% end %>
@@ -58,35 +79,37 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <% if admin? %>
-          <%= link_to 'New Good', new_good_path, class:'button is-dark' %>
+          <%= link_to "#{t("views.application.new_good")} ", new_good_path, class:'button is-dark' %>
         <% end %>
         <div class="field is-grouped">
         <% if user_signed_in? %>
 
           <div class="navbar-item has-dropdown is-hoverable">
-            <%= link_to 'Menu', edit_user_registration_path, class: "navbar-link" %>
+            <h3><%= "#{t("views.application.menu")} " %></h3>
 
             <div class="navbar-dropdown is-right">
+              <%= link_to "#{t("views.application.edit_profile")} " , edit_user_registration_path, class:"navbar-item" %>
               <%= link_to user_path(current_user), class:"navbar-item" do %>
-                <%= current_user.name %> <% if admin? %> &nbsp; <span class="tag is-warning">ADMIN</span> <% end %>
+                <%= "#{t("views.application.my_profile")} " %> <% if admin? %> &nbsp; <span class="tag is-warning">ADMIN</span> <% end %>
               <% end %>
-              <p class="control">
-                <%= link_to 'Avis', goods_path, class: 'navbar-item' %>
-              </p>
-              <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class:"navbar-item" %>
+              <%= link_to "#{t("views.application.all_my_goods")} ", goods_path, class: 'navbar-item' %>
+              <%= link_to "#{t("views.application.disconnect")} ", destroy_user_session_path, method: :delete, class:"navbar-item" %>
             </div>
           </div>
         <% else %>
+
+
+
         <!--
         <p class="control">
            <%= link_to 'Pricing', pricing_index_path, class: 'navbar-item button is-dark' %>
         </p>
         -->
         <p class="control">
-          <%= link_to "Sign In", new_user_session_path, class:"navbar-item button is-dark" %>
+          <%= link_to "#{t("views.application.sign_in")} ", new_user_session_path, class:"navbar-item button is-dark" %>
         </p>
         <p class="control">
-          <%= link_to "Sign up", new_user_registration_path, class:"navbar-item button is-dark"%>
+          <%= link_to "#{t("views.application.sign_up")} ", new_user_registration_path, class:"navbar-item button is-dark"%>
         </p>
         <% end %>
 
@@ -115,7 +138,7 @@
           <% if subscribed? %>
             <div class="navbar-item">
               <%= link_to opinion_index_path, class: 'navbar-item button is-dark' do %>
-                <i class="fa fa-good"></i> &nbsp;&nbsp; My Opinions
+                <i class="fa fa-good"></i> &nbsp;&nbsp; <%= "#{t("views.application.my_reviews")} " %>
               <% end %>
             </div>
           <% end %>
@@ -123,22 +146,22 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <% if admin? %>
-              <%= link_to 'New Good', new_good_path, class:'button is-dark' %>
+              <%= link_to "#{t("views.application.new_good")} ", new_good_path, class:'button is-dark' %>
             <% end %>
             <div class="field is-grouped">
             <% if user_signed_in? %>
 
               <div class="navbar-item has-dropdown is-hoverable">
-                <%= link_to 'Menu', edit_user_registration_path, class: "navbar-link" %>
+                <%= link_to "#{t("views.application.menu")} ", edit_user_registration_path, class: "navbar-link" %>
 
                 <div class="navbar-dropdown is-right">
                   <%= link_to edit_user_registration_path, class:"navbar-item" do %>
-                    <%= current_user.name %> <% if admin? %> &nbsp; <span class="tag is-warning">ADMIN</span> <% end %>
+                    <%= "#{t("views.application.edit_profile")} " %> <% if admin? %> &nbsp; <span class="tag is-warning">ADMIN</span> <% end %>
                   <% end %>
                   <p class="control">
-                    <%= link_to 'Goods', goods_path, class: 'navbar-item' %>
+                    <%= link_to "#{t("views.application.all_my_goods")} ", goods_path, class: 'navbar-item' %>
                   </p>
-                  <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"navbar-item" %>
+                  <%= link_to "#{t("views.application.disconnect")} ", destroy_user_session_path, method: :delete, class:"navbar-item" %>
                 </div>
               </div>
             <% else %>
@@ -148,10 +171,10 @@
             </p>
             -->
             <p class="control">
-              <%= link_to "Sign In", new_user_session_path, class:"navbar-item button is-dark" %>
+              <%= link_to "#{t("views.application.sign_in")} ", new_user_session_path, class:"navbar-item button is-dark" %>
             </p>
             <p class="control">
-              <%= link_to "Sign up", new_user_registration_path, class:"navbar-item button is-dark"%>
+              <%= link_to "#{t("views.application.sign_up")} ", new_user_registration_path, class:"navbar-item button is-dark"%>
             </p>
             <% end %>
 
